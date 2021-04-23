@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.mapper.HouseMapper">
+
+    <resultMap id="HouseResultMap" type="cn.bdqn.domain.House">
+        <id column="id" property="id"/>
+        <result column="number_id" property="numberId"/>
+        <result column="squaremetre" property="squaremetre"/>
+        <result column="house_number_id" property="houseNumberId"/>
+        <result column="housetcalculation" property="housetcalculation"/>
+        <result column="desc" property="desc"/>
+        <result column="houset_floor" property="housetFloor"/>
+        <result column="room_id" property="roomId"/>
+        <result column="office_id" property="officeId"/>
+        <result column="uint_id" property="uintId"/>
+        <result column="floor_id" property="floorId"/>
+        <result column="housing_status_id" property="housingStatusId"/>
+
+
+        <association property="unit" javaType="cn.bdqn.domain.Unit">
+            <id column="id" property="id"/>
+            <result column="floor_id" property="floorId"/>
+            <result column="unitNumber" property="unitNumber"/>
+            <result column="unitFloors" property="unitFloors"/>
+            <result column="unitArea" property="unitArea"/>
+            <result column="unitLift" property="unitLift"/>
+            <result column="unitCreator" property="unitCreator"/>
+            <result column="unitRemarks" property="unitRemarks"/>
+        </association>
+
+        <association property="houseTypeRoom" javaType="cn.bdqn.domain.HouseTypeRoom">
+            <id column="id" property="id"/>
+            <result column="room_name" property="roomName"/>
+        </association>
+
+        <association property="houseTypeOffice" javaType="cn.bdqn.domain.HouseTypeOffice">
+            <id column="id" property="id"/>
+            <result column="office_name" property="officeName"/>
+        </association>
+
+        <association property="housingStatus" javaType="cn.bdqn.domain.HousingStatus">
+            <id column="housetype_id" property="housetypeId"/>
+            <result column="housetype_name" property="housetypeName"/>
+        </association>
+
+        <association property="floor" javaType="cn.bdqn.domain.Floor">
+            <id column="id" property="id"/>
+            <result column="floorId" property="floorId"/>
+            <result column="floorArea" property="floorArea"/>
+            <result column="floorCreator" property="floorCreator"/>
+            <result column="floorName" property="floorName"/>
+            <result column="desc" property="desc"/>
+        </association>
+
+
+    </resultMap>
+
+    <select id="selectAllHouse" resultMap="HouseResultMap">
+        select *
+        from house h,house_type_office hto,house_type_room htr,housing_status hs,unit u,floor f
+        where h.floor_id = f.id and h.office_id = hto.id and h.room_id = htr.id and h.uint_id = u.id and h.housing_status_id = hs.housetype_id
+    </select>
+
+    <select id="selectByHouse" resultMap="HouseResultMap">
+        select *
+        from house h,house_type_office hto,house_type_room htr,housing_status hs,unit u,floor f
+        <where>
+            h.floor_id = f.id and h.office_id = hto.id and h.room_id = htr.id and h.uint_id = u.id and h.housing_status_id = hs.housetype_id
+            <if test="housingStatusId != null and housingStatusId != ''">
+                and housing_status_id like concat('%',#{housingStatusId},'%')
+            </if>
+            <if test="houseNumberId != null and houseNumberId != ''">
+                and house_number_id like concat('%',#{houseNumberId},'%')
+            </if>
+            <if test="floorId != null and floorId != ''">
+                and floor_id like concat('%',#{floorId},'%')
+            </if>
+            <if test="uintId != null and uintId != ''">
+                and uint_id like concat('%',#{uintId},'%')
+            </if>
+            <if test="numberId != null and numberId != ''">
+                and number_id like concat('%',#{numberId},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="houseById" resultMap="HouseResultMap">
+        select *
+        from house h,house_type_office hto,house_type_room htr,housing_status hs,unit u,floor f
+        where h.floor_id = f.id and h.office_id = hto.id and h.room_id = htr.id and h.uint_id = u.id and h.housing_status_id = hs.housetype_id
+            and h.id= #{id}
+    </select>
+
+    <delete id="deleteByHouse">
+        delete from house where number_id = #{numberId}
+    </delete>
+
+    <update id="updateByHouse">
+        update house
+        <set>
+            <if test="numberId!=null and numberId!='' ">
+                ,number_id=#{numberId}
+            </if>
+            <if test="housetFloor!=null and housetFloor!='' ">
+                , houset_floor =#{housetFloor}
+            </if>
+            <if test="uintId!=null and uintId!='' ">
+                , uint_id =#{uintId}
+            </if>
+            <if test="roomId!=null and roomId!='' ">
+                , room_id =#{roomId}
+            </if>
+            <if test="officeId!=null and officeId!='' ">
+                , office_id =#{officeId}
+            </if>
+            <if test="squaremetre!=null and squaremetre!='' ">
+                , squaremetre =#{squaremetre}
+            </if>
+            <if test="housetcalculation!=null and housetcalculation!='' ">
+                , housetcalculation =#{housetcalculation}
+            </if>
+            <if test="desc!=null and desc!='' ">
+                , `desc` =#{desc}
+            </if>
+        </set>
+        where number_id=#{numberId}
+    </update>
+
+    <insert id="insertByHouse">
+        insert into house(floor_id,uint_id,number_id,houset_floor,room_id,office_id,squaremetre,housetcalculation,`desc`,house_number_id,housing_status_id)
+        values(#{floorId},#{uintId},#{numberId},#{housetFloor},#{roomId},#{officeId},#{squaremetre},#{housetcalculation},#{desc},#{houseNumberId},#{housingStatusId})
+    </insert>
+
+    <select id="selectAllTypeRooom" resultMap="HouseResultMap">
+        select id,room_name
+        from house_type_room
+    </select>
+
+    <select id="selectAllTypeOffice" resultMap="HouseResultMap">
+        select id,office_name
+        from house_type_office
+    </select>
+
+</mapper>

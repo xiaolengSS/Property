@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.mapper.UnitMapper">
+
+    <resultMap id="UnitAndFloorMap" type="cn.bdqn.domain.Unit">
+        <id column="id" property="id"/>
+        <result column="floorId" property="floorId"/>
+        <result column="unitNumber" property="unitNumber"/>
+        <result column="unitFloors" property="unitFloors"/>
+        <result column="unitArea" property="unitArea"/>
+        <result column="unitLift" property="unitLift"/>
+        <result column="unitCreator" property="unitCreator"/>
+            <association property="floor" javaType="cn.bdqn.domain.Floor">
+                <id column="floorId" property="id"/>
+                <result column="floorName" property="floorName"/>
+            </association>
+    </resultMap>
+
+<!--    根据楼栋查询单元；根据多条件查询单元-->
+    <select id="selectAllByUnit" resultMap="UnitAndFloorMap">
+        select
+            unit.id,floor.id as floorId,floor.floorName,unit.unitNumber,unit.unitFloors,unit.unitArea,unit.unitLift,unit.unitCreator
+        from
+            unit,floor
+        where
+            unit.floor_id = floor.floorId and
+            unit.floor_id = #{floorId}
+            <if test="unitNumber != '' and unitNumber != null">
+                and unitNumber = #{unitNumber}
+            </if>
+            <if test="unitFloors != '' and unitFloors != null">
+                and unitFloors = #{unitFloors}
+            </if>
+            <if test="unitLift != '' and unitLift != null">
+                and unitLift = #{unitLift}
+            </if>
+    </select>
+    
+<!--    判断单元是否存在-->
+    <select id="whereUnit" resultType="int">
+        select
+            count(*)
+        from
+            unit
+        where
+            unitNumber = #{unitNumber}
+    </select>
+    
+    
+<!--    根据单元id修改单元-->
+    <update id="updateUnit">
+        update
+            unit
+        <set>
+            <if test="unitNumber != null and unitNumber != ''">
+                unitNumber = #{unitNumber},
+            </if>
+            <if test="unitFloors != null and unitFloors != ''">
+                unitFloors = #{unitFloors},
+            </if>
+            <if test="unitArea != null and unitArea != ''">
+                unitArea = #{unitArea},
+            </if>
+            <if test="unitLift != null and unitLift != ''">
+                unitLift = #{unitLift},
+            </if>
+            <if test="unitRemarks != null and unitRemarks != ''">
+                unitRemarks = #{unitRemarks}
+            </if>
+        </set>
+        where
+            id = #{id}
+    </update>
+<!--根据id删除单元-->
+    <delete id="deleteUnit">
+        delete from unit
+        where
+            id  = #{id}
+    </delete>
+<!--新增单元-->
+    <insert id="insertUnit" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="cn.bdqn.domain.Unit">
+        INSERT into
+            unit(floor_id,unitNumber,unitFloors,unitArea,unitLift,unitCreator,unitRemarks)
+        VALUES
+            (#{floorId},#{unitNumber},#{unitFloors},#{unitArea},#{unitLift},#{unitCreator},#{unitRemarks})
+    </insert>
+
+    <!--李欣玉的代码-->
+    <select id="selectAllUnit" resultMap="UnitAndFloorMap">
+        select id,floor_id as floorId,unitNumber,unitFloors,unitArea,unitLift,unitCreator,unitRemarks
+        from unit
+    </select>
+
+    <select id="selectUnitByUnitName" resultMap="UnitAndFloorMap">
+        select id,floor_id as floorId,unitNumber,unitFloors,unitArea,unitLift,unitCreator,unitRemarks
+        from unit
+        where unitNumber = #{unitNumber}
+    </select>
+
+    <select id="selectUnitByFloorId" resultMap="UnitAndFloorMap">
+        select id,floor_id as floorId,unitNumber,unitFloors,unitArea,unitLift,unitCreator,unitRemarks
+        from unit
+        where floor_id = #{floorId}
+    </select>
+
+</mapper>

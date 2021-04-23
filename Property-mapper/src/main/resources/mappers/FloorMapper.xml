@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.mapper.FloorMapper">
+
+    <resultMap id="FloorMap" type="cn.bdqn.domain.Floor">
+        <result column="id" property="id"/>
+        <result column="floorId" property="floorId"/>
+        <result column="floorArea" property="floorArea"/>
+        <result column="floorCreator" property="floorCreator"/>
+        <result column="floorName" property="floorName"/>
+        <result column="desc" property="desc"/>
+    </resultMap>
+
+    
+    <select id="selectAllByFloor" resultMap="FloorMap" resultType="cn.bdqn.domain.Floor">
+        select
+            id,floorName, floorId,floorArea,floorCreator,'desc'
+        from
+            floor
+        <where>
+            <if test="id!='' and id!=null ">
+                id=#{id}
+            </if>
+            <if test="floorId!='' and floorId!=null ">
+                and floorId=#{floorId}
+            </if>
+            <if test="floorName!='' and floorName!=null ">
+                and  floorName like concat('%',#{floorName},'%')
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteById" >
+        DELETE
+        from
+            floor
+        where
+            id=#{id}
+    </delete>
+
+    <update id="updateByFloor" parameterType="cn.bdqn.domain.Floor">
+        update
+            floor
+        <set>
+            <if test="floorId!=null and floorId!='' ">
+                , floorId=#{floorId}
+            </if>
+            <if test="floorName!=null and floorName!='' ">
+                ,floorName=#{floorName}
+            </if>
+            <if test="floorArea!=null and floorArea!='' ">
+                ,floorArea=#{floorArea}
+            </if>
+            <if test="desc!=null and desc!='' ">
+            ,`desc`=#{desc}
+            </if>
+        </set>
+        where
+            id=#{id}
+    </update>
+
+    <insert id="insertFloor" >
+        insert into
+         floor(floorId,floorName,floorArea,floorCreator,`desc`)
+         values
+         (#{floorId},#{floorName},#{floorArea},#{floorCreator},#{desc})
+    </insert>
+
+    <select id="selectById" resultType="java.lang.Integer">
+        select
+            count(*)
+        from
+            floor
+        where
+            floorId=#{floorId}
+    </select>
+
+    <!-- 查询全部楼栋；根据楼栋编号查询楼栋-->
+    <select id="selectAllByFloorId" resultType="cn.bdqn.domain.Floor">
+        select
+        id,floorId,floorName,floorArea,floorCreator,`desc`
+        from
+        floor
+        <where>
+            <if test="floorId != '' and floorId != null">
+                floorId = #{floorId}
+            </if>
+        </where>
+    </select>
+
+    <!--李欣玉的代码-->
+    <select id="selectByFloorId" resultMap="FloorMap" >
+        select
+        id,floorName, floorId,floorArea,floorCreator,'desc'
+        from
+        floor
+        where floorId = #{floorId}
+    </select>
+
+</mapper>
