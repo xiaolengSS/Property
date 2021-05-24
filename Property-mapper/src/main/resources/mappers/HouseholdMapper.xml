@@ -24,4 +24,30 @@
         </set>
         where id = #{id}
     </update>
+
+    <resultMap id="HouseholdMap" type="cn.bdqn.domain.Household">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="phone" column="phone"></result>
+        <result property="idNumber" column="idnumber"></result>
+        <result property="houseId" column="house_id"></result>
+        <result property="keyCared" column="keycared"></result>
+        <result property="qq" column="qq"></result>
+        <result property="accessKey" column="access_key"></result>
+        <result property="creator" column="creator"></result>
+        <result property="age" column="age"></result>
+        <result property="sex" column="sex"></result>
+        <result property="headPortrait" column="head_portrait"></result>
+
+        <result property="community.communityId" column="community_id"></result>
+    </resultMap>
+
+    <!-- 根据业主ID查询业主信息 -->
+    <select id="selectByHousehold" resultMap="HouseholdMap">
+        select id,`name`,phone,idnumber,house_id,keycared,qq,access_key,creator,age,sex,community_id,head_portrait
+        FROM household
+        where id = #{id}
+    </select>
+
+
 </mapper>

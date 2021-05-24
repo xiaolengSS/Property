@@ -24,6 +24,8 @@ public class Household {
     private Integer age;
     //业主性别
     private String sex;
+    //头像
+    private String headPortrait;
     //关联小区
     private Community community;
 

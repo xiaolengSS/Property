@@ -1,5 +1,6 @@
 package cn.bdqn.controller;
 
+import cn.bdqn.domain.Household;
 import cn.bdqn.service.HouseholdService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,5 +28,11 @@ public class HouseholdController {
     @RequestMapping("/changeByHouseholdBinding")
     public Integer changeByHouseholdBinding(Integer id,Integer houseId,Integer communityId){
         return householdService.changeByHouseholdBinding(id,houseId,communityId);
+    }
+
+    //根据业主ID查询业主信息
+    @RequestMapping("/queryByHousehold")
+    public Household queryByHousehold(Integer id){
+        return householdService.queryByHousehold(id);
     }
 }
