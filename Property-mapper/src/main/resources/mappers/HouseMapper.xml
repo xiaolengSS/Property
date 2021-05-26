@@ -18,7 +18,6 @@
         <result column="floor_id" property="floorId"/>
         <result column="housing_status_id" property="housingStatusId"/>
 
-
         <association property="unit" javaType="cn.bdqn.domain.Unit">
             <id column="id" property="id"/>
             <result column="floor_id" property="floorId"/>
@@ -54,20 +53,33 @@
             <result column="desc" property="desc"/>
         </association>
 
-
+        <association property="household" javaType="cn.bdqn.domain.Household">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="phone" property="phone"/>
+            <result column="idnumber" property="idNumber"/>
+            <result column="keycared" property="keyCared"/>
+            <result column="qq" property="qq"/>
+            <result column="access_key" property="accessKey"/>
+            <result column="creator" property="creator"/>
+            <result column="age" property="age"/>
+            <result column="sex" property="sex"/>
+            <result column="head_portrait" property="headPortrait"/>
+            <result column="remarks" property="remarks"/>
+        </association>
     </resultMap>
 
     <select id="selectAllHouse" resultMap="HouseResultMap">
         select *
-        from house h,house_type_office hto,house_type_room htr,housing_status hs,unit u,floor f
-        where h.floor_id = f.id and h.office_id = hto.id and h.room_id = htr.id and h.uint_id = u.id and h.housing_status_id = hs.housetype_id
+        from house h,house_type_office hto,house_type_room htr,housing_status hs,unit u,floor f,household ho
+        where h.floor_id = f.id and h.office_id = hto.id and h.room_id = htr.id and h.uint_id = u.id and h.housing_status_id = hs.housetype_id and h.household_id = ho.id
     </select>
 
     <select id="selectByHouse" resultMap="HouseResultMap">
         select *
-        from house h,house_type_office hto,house_type_room htr,housing_status hs,unit u,floor f
+            from house h,house_type_office hto,house_type_room htr,housing_status hs,unit u,floor f,Household ho
         <where>
-            h.floor_id = f.id and h.office_id = hto.id and h.room_id = htr.id and h.uint_id = u.id and h.housing_status_id = hs.housetype_id
+            h.floor_id = f.id and h.office_id = hto.id and h.room_id = htr.id and h.uint_id = u.id and h.housing_status_id = hs.housetype_id and h.household_id = ho.id
             <if test="housingStatusId != null and housingStatusId != ''">
                 and housing_status_id like concat('%',#{housingStatusId},'%')
             </if>
@@ -90,7 +102,7 @@
         select *
         from house h,house_type_office hto,house_type_room htr,housing_status hs,unit u,floor f
         where h.floor_id = f.id and h.office_id = hto.id and h.room_id = htr.id and h.uint_id = u.id and h.housing_status_id = hs.housetype_id
-            and h.id= #{id}
+            and h.id= #{id} and
     </select>
 
     <delete id="deleteByHouse">

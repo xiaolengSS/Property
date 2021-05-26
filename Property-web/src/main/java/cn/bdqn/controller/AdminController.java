@@ -4,7 +4,9 @@ package cn.bdqn.controller;
 import cn.bdqn.domain.Admin;
 import cn.bdqn.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,19 +22,21 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("/admin")
+@CrossOrigin
 public class AdminController {
 
     private static final long serialVersionUID = -8030863139248720433L;
 
-    private static int WIDTH = 100;
+    private static int WIDTH = 191;
 
-    private static int HEIGHT = 30;
+    private static int HEIGHT = 38;
 
     @Autowired
     private AdminService adminservice;
     //获取验证码
     @RequestMapping("/captcha")
     @ResponseBody
+
     public void captcha(HttpServletRequest req, HttpServletResponse resp) throws Exception{
         // 1、首先要有一张画布
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);

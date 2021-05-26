@@ -2,7 +2,6 @@ package cn.bdqn.domain;
 
 
 public class Unit {
-
     //ID
     private Integer id;
     //楼栋名称

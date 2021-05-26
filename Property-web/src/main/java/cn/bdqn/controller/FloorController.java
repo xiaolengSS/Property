@@ -19,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/floor")
+@CrossOrigin
 public class FloorController {
 
     @Autowired
