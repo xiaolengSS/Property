@@ -1,5 +1,8 @@
 package cn.bdqn.domain;
 
+import cn.bdqn.domain.Community;
+import cn.bdqn.domain.House;
+
 //业主
 public class Household {
     //id
@@ -14,24 +17,18 @@ public class Household {
     private House house;
     //关联重点关怀人员
     private Integer keyCared;
-    //QQ
-    private Integer qq;
-    //门禁钥匙
-    private Integer accessKey;
-    //创建人
-    private String creator;
-    //业主年龄
-    private Integer age;
-    //业主性别
-    private String sex;
-    //小区ID
-    private Integer communityId;
-    //关联小区
-    private Community community;
-    //头像
-    private String headPortrait;
-    //备注
-    private String remarks;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     @Override
     public String toString() {
@@ -52,18 +49,6 @@ public class Household {
                 ", headPortrait='" + headPortrait + '\'' +
                 ", remarks='" + remarks + '\'' +
                 '}';
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
@@ -173,4 +158,51 @@ public class Household {
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
+
+    //QQ
+    private Integer qq;
+    //门禁钥匙
+    private Integer accessKey;
+    //创建人
+    private String creator;
+    //业主年龄
+    private Integer age;
+    //业主性别
+    private String sex;
+    //小区ID
+    private Integer communityId;
+    //关联小区
+    private Community community;
+    //头像
+    private String headPortrait;
+    //备注
+    private String remarks;
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

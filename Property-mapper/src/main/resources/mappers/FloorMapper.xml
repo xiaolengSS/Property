@@ -93,7 +93,7 @@
     <!--李欣玉的代码-->
     <select id="selectByFloorId" resultMap="FloorMap" >
         select
-        id,floorName, floorId,floorArea,floorCreator,'desc'
+        id,floorName, floorId,floorArea,floorCreator,`desc`
         from
         floor
         where floorId = #{floorId}

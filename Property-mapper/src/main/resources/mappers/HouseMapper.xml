@@ -154,5 +154,4 @@
         select id,office_name
         from house_type_office
     </select>
-
 </mapper>

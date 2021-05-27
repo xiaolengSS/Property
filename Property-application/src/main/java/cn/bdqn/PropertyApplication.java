@@ -3,13 +3,8 @@ package cn.bdqn;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.servlet.annotation.WebServlet;
-
-@ComponentScan(basePackages = {"cn.bdqn"})
 @SpringBootApplication(scanBasePackages="cn.bdqn")
 @MapperScan(basePackages = {"cn.bdqn.mapper"})
 @EnableTransactionManagement

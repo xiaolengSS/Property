@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.mapper.HouseholdMapper">
+
+    <!-- 业主房屋解绑 -->
+    <update id="updateByHouseholdUnbundle">
+        update household
+        set house_id = null,community_id = null
+        where id = #{id}
+    </update>
+
+    <!-- 业主房屋绑定 -->
+    <update id="updateByHouseholdBinding">
+        update household
+        <set>
+            <if test="houseId != null">
+                house_id = #{houseId},
+            </if>
+            <if test="communityId != null">
+                community_id = #{communityId}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <resultMap id="HouseholdMap" type="cn.bdqn.domain.Household">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="phone" column="phone"></result>
+        <result property="idNumber" column="idnumber"></result>
+        <result property="houseId" column="house_id"></result>
+        <result property="keyCared" column="keycared"></result>
+        <result property="qq" column="qq"></result>
+        <result property="accessKey" column="access_key"></result>
+        <result property="creator" column="creator"></result>
+        <result property="age" column="age"></result>
+        <result property="sex" column="sex"></result>
+        <result property="headPortrait" column="head_portrait"></result>
+
+        <result property="community.communityId" column="community_id"></result>
+    </resultMap>
+
+    <!-- 根据业主ID查询业主信息 -->
+    <select id="selectByHousehold" resultMap="HouseholdMap">
+        select id,`name`,phone,idnumber,house_id,keycared,qq,access_key,creator,age,sex,community_id,head_portrait
+        FROM household
+        where id = #{id}
+    </select>
+
+
+</mapper>
