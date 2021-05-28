@@ -5,6 +5,8 @@ import cn.bdqn.mapper.HouseholdMapper;
 import cn.bdqn.service.HouseholdService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * @author jinsuisheng
  * @date 2021年05月24日 14:53
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class HouseholdServiceImpl implements HouseholdService {
 
+    @Resource
     private HouseholdMapper householdMapper;
 
     //业主房屋解绑 id:业主id
