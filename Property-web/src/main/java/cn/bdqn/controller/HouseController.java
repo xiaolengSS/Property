@@ -10,10 +10,7 @@ import cn.bdqn.service.UnitService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,21 +19,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/house")
+@CrossOrigin
 public class HouseController {
 
     @Autowired
     public HouseService houseService;
 
-    //查询全部房屋带分页的方法
-    @RequestMapping("/queryAllPageInfoHouse")
-    @ResponseBody
-    public PageInfo queryAllPageInfoHouse(
-            @RequestParam(name = "currentPage",required = true,defaultValue = "1") Integer currentPage){
-
-        PageInfo<House> housePageInfo = houseService.queryAllByPageHouse(currentPage,10);
-
-        return housePageInfo;
-    }
 
     //根据房屋id查询房屋信息的方法
     @RequestMapping("/queryByIDHouse")

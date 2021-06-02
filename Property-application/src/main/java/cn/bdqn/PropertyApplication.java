@@ -2,21 +2,38 @@ package cn.bdqn;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.annotation.WebServlet;
 
-@ComponentScan(basePackages = {"cn.bdqn"})
+
 @SpringBootApplication(scanBasePackages="cn.bdqn")
 @MapperScan(basePackages = {"cn.bdqn.mapper"})
 @EnableTransactionManagement
+//@EnableAutoConfiguration(exclude = { MultipartAutoConfiguration.class })
 public class PropertyApplication {
     //创建了一个sprig容器【将Beasn纳入到spring管理中】
     //启动Tomcat服务器
     public static void main(String[] args) {
         SpringApplication.run(PropertyApplication.class,args);
+    }
+
+    // 显示声明CommonsMultipartResolver为mutipartResolver
+    @Bean(name = "multipartResolver")
+    public MultipartResolver multipartResolver() {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setDefaultEncoding("UTF-8");
+        resolver.setResolveLazily(true);// resolveLazily属性启用是为了推迟文件解析，以在在UploadAction中捕获文件大小异常
+        resolver.setMaxInMemorySize(40960);
+        resolver.setMaxUploadSize(5 * 1024 * 1024 * 1024);// 上传文件大小 5G
+        return resolver;
     }
 }

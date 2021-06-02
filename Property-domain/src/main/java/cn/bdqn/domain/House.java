@@ -6,6 +6,9 @@ public class House {
     //id
     private Integer id;
 
+    //业主id
+    private Integer householdId;
+
     //房屋编号
     private String numberId;
 
@@ -189,6 +192,14 @@ public class House {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public Integer getHouseholdId() {
+        return householdId;
+    }
+
+    public void setHouseholdId(Integer householdId) {
+        this.householdId = householdId;
     }
 
     @Override
