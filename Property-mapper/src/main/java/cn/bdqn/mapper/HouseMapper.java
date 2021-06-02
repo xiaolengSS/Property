@@ -1,8 +1,6 @@
 package cn.bdqn.mapper;
 
 import cn.bdqn.domain.House;
-import cn.bdqn.domain.HouseTypeOffice;
-import cn.bdqn.domain.HouseTypeRoom;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -19,9 +17,8 @@ public interface HouseMapper {
     public void deleteByHouse(@Param("numberId") String housenumberID);
 
     //根据房屋编号修改房屋信息
-    public void updateByHouse( House house);
+    public void updateByHouse(House house);
 
     //添加房屋信息
     public void insertByHouse(House house);
-
 }

@@ -57,6 +57,40 @@ public class House {
     //关联楼栋表
     private Floor floor;
 
+    //关联业主表
+    private Household household;
+
+    public Household getHousehold() {
+        return household;
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "id=" + id +
+                ", numberId='" + numberId + '\'' +
+                ", roomId=" + roomId +
+                ", officeId=" + officeId +
+                ", squaremetre=" + squaremetre +
+                ", uintId=" + uintId +
+                ", floorId=" + floorId +
+                ", houseNumberId='" + houseNumberId + '\'' +
+                ", housetFloor=" + housetFloor +
+                ", housetcalculation=" + housetcalculation +
+                ", housingStatusId=" + housingStatusId +
+                ", desc='" + desc + '\'' +
+                ", houseTypeOffice=" + houseTypeOffice +
+                ", houseTypeRoom=" + houseTypeRoom +
+                ", housingStatus=" + housingStatus +
+                ", unit=" + unit +
+                ", floor=" + floor +
+                ", household=" + household +
+                '}';
+    }
+
+    public void setHousehold(Household household) {
+        this.household = household;
+    }
 
     public HouseTypeRoom getHouseTypeRoom() {
         return houseTypeRoom;
@@ -81,6 +115,8 @@ public class House {
     public void setUnit(Unit unit) {
         this.unit = unit;
     }
+
+
 
     public Floor getFloor() {
         return floor;
@@ -194,34 +230,6 @@ public class House {
         this.desc = desc;
     }
 
-    public Integer getHouseholdId() {
-        return householdId;
-    }
-
-    public void setHouseholdId(Integer householdId) {
-        this.householdId = householdId;
-    }
-
-    @Override
-    public String toString() {
-        return "House{" +
-                "id=" + id +
-                ", numberId='" + numberId + '\'' +
-                ", roomId=" + roomId +
-                ", officeId=" + officeId +
-                ", squaremetre=" + squaremetre +
-                ", uintId=" + uintId +
-                ", floorId=" + floorId +
-                ", houseNumberId='" + houseNumberId + '\'' +
-                ", housetFloor=" + housetFloor +
-                ", housetcalculation=" + housetcalculation +
-                ", housingStatusId=" + housingStatusId +
-                ", desc='" + desc + '\'' +
-                ", houseTypeOffice=" + houseTypeOffice +
-                ", houseTypeRoom=" + houseTypeRoom +
-                ", housingStatus=" + housingStatus +
-                ", unit=" + unit +
-                ", floor=" + floor +
-                '}';
-    }
 }
+
+

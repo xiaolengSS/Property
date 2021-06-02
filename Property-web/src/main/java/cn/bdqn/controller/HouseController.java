@@ -25,7 +25,6 @@ public class HouseController {
     @Autowired
     public HouseService houseService;
 
-
     //根据房屋id查询房屋信息的方法
     @RequestMapping("/queryByIDHouse")
     @ResponseBody

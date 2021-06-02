@@ -9,16 +9,15 @@ import cn.bdqn.service.HouseRoomService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/floor")
+@CrossOrigin
 public class FloorController {
 
     @Autowired
@@ -46,14 +45,12 @@ public class FloorController {
     @GetMapping("/queryAllByFloor")
     @ResponseBody
     public PageInfo<Floor> queryAllByFloor(@RequestParam(name = "currentPage",required = true,defaultValue = "1") Integer currentPage,Floor floor,HttpServletRequest request){
-
         //将几室几厅查询出来，带到页面上
         List<HouseTypeOffice> houseOffice = houseOfficeService.queryAllByOffice();
         List<HouseTypeRoom> houseTypeRooms = houseRoomService.queryAllByRoom();
         HttpSession session = request.getSession();
         session.setAttribute("houseOffice",houseOffice);
         session.setAttribute("houseTypeRooms",houseTypeRooms);
-
         PageInfo<Floor> floorPageInfo = floorService.queryAllByFloor(floor,currentPage,5);
         return floorPageInfo;
 
