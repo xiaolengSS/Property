@@ -15,7 +15,7 @@ public class Household {
     //关联重点关怀人员
     private Integer keyCared;
     //QQ
-    private Integer qq;
+    private String qq;
     //门禁钥匙
     private Integer accessKey;
     //创建人
@@ -102,11 +102,11 @@ public class Household {
         this.keyCared = keyCared;
     }
 
-    public Integer getQq() {
+    public String getQq() {
         return qq;
     }
 
-    public void setQq(Integer qq) {
+    public void setQq(String qq) {
         this.qq = qq;
     }
 
