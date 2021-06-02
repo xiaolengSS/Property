@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.mapper.HouseholdMapper">
+    <!--查询全部业主的关系映射-->
+    <resultMap id="HouseholdAndHC" type="cn.bdqn.domain.Household">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="phone" property="phone"/>
+        <result column="idNumber" property="idNumber"/>
+        <result column="keyCared" property="keyCared"/>
+        <result column="access_key" property="accessKey"/>
+        <result column="creator" property="creator"/>
+        <result column="age" property="age"/>
+        <result column="sex" property="sex"/>
+        <result column="head_portrait" property="headPortrait"/>
+        <result column="remarks" property="remarks"/>
+
+        <association property="house" javaType="cn.bdqn.domain.House">
+            <id column="houseId" property="id"/>
+            <result column="houseNumberId" property="numberId"/>
+        </association>
+        <association property="community" javaType="cn.bdqn.domain.Community">
+            <id column="communityId" property="communityId"/>
+            <result column="communityName" property="communityName"/>
+        </association>
+    </resultMap>
+    <!--查询全部业主，根据条件查询-->
+    <select id="selectHousehold" resultMap="HouseholdAndHC">
+        SELECT
+            household.id,household.name,household.phone,household.idnumber as idNumber,
+            house.id as houseId, house.number_id as houseNumberId
+            ,household.keycared as keyCared,household.qq,household.access_key,household.creator,household.age,household.sex,
+            community.community_id as communityId,community.community_name as communityName
+            ,household.head_portrait,household.remarks
+        FROM
+            community,household left join house on household.id = house.household_id
+        WHERE
+            household.community_id = community.community_id
+            <if test="name != null and name != ''">
+                and household.name like concat('%',#{name},'%')
+            </if>
+            <if test="house != null and house != ''">
+                <if test="house.numberId != null and house.numberId != ''">
+                    and house.number_id = #{house.numberId}
+                </if>
+            </if>
+            <if test="phone != null and phone != ''">
+                and household.phone = #{phone}
+            </if>
+            <if test="id != null and id != ''">
+                and household.id = #{id}
+            </if>
+            <if test="idNumber != null and idNumber != ''">
+                and household.idNumber = #{idNumber}
+            </if>
+    </select>
+    <!--添加业主-->
+    <insert id="insertHousehold" keyProperty="id" useGeneratedKeys="true" keyColumn="id" parameterType="cn.bdqn.domain.Household" >
+        INSERT INTO
+            household(name,age,sex,idnumber,phone,access_key,remarks,qq,keycared,creator,community_id,head_portrait)
+        value(#{name},#{age},#{sex},#{idNumber},#{phone},#{accessKey},#{remarks},#{qq},#{keyCared},#{creator},#{communityId},#{headPortrait})
+    </insert>
+    <!--修改业主-->
+    <update id="updateHousehold">
+        update household
+            <set>
+                <if test="name != null and name != ''">
+                    name = #{name},
+                </if>
+                <if test="sex != null and sex != ''">
+                    sex = #{sex},
+                </if>
+                <if test="age != null and age != ''">
+                    age = #{age},
+                </if>
+                <if test="idNumber != null and idNumber != ''">
+                    idnumber = #{idNumber},
+                </if>
+                <if test="phone != null and phone != ''">
+                    phone = #{phone},
+                </if>
+                <if test="accessKey != null and accessKey != ''">
+                    access_key = #{accessKey},
+                </if>
+                <if test="remarks != null and remarks != ''">
+                    remarks = #{remarks},
+                </if>
+                <if test="qq != null and qq != ''">
+                    qq = #{qq}
+                </if>
+            </set>
+            where
+                id = #{id}
+    </update>
+    <!--删除业主-->
+    <delete id="deleteHousehold">
+        delete from household
+        where
+            id = #{id}
+    </delete>
+
+</mapper>
