@@ -8,6 +8,8 @@ import cn.bdqn.service.FloorService;
 import cn.bdqn.service.HouseService;
 import cn.bdqn.service.UnitService;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/house")
 @CrossOrigin
+@Api(tags = "房屋管理模块")
 public class HouseController {
 
     @Autowired
@@ -28,6 +31,7 @@ public class HouseController {
     //根据房屋id查询房屋信息的方法
     @RequestMapping("/queryByIDHouse")
     @ResponseBody
+    @ApiOperation(value = "根据id查询房屋信息模块", notes = "根据id查询房屋信息模块",response = String.class)
     public House queryByIDHouse(Integer id){
 
         House house = houseService.houseQueryById(id);
@@ -39,6 +43,7 @@ public class HouseController {
     //根据房屋信息模糊查询带分页的房屋信息
     @RequestMapping("/queryByHouse")
     @ResponseBody
+    @ApiOperation(value = "根据房屋信息模糊查询带分页的房屋信息", notes = "根据房屋信息模糊查询带分页的房屋信息",response = String.class)
     public PageInfo<House> queryByHouse(@RequestParam(name = "currentPage",required = true,defaultValue = "1") Integer currentPage,
                                         House house){
 
@@ -51,6 +56,7 @@ public class HouseController {
     //根据房屋编号删除房屋信息
     @RequestMapping("/deleteHouse")
     @ResponseBody
+    @ApiOperation(value = "根据房屋编号删除房屋信息", notes = "根据房屋编号删除房屋信息",response = String.class)
     public String deleteHouse(String numberId){
         houseService.houseDelete(numberId);
         return "删除成功！";
@@ -59,6 +65,7 @@ public class HouseController {
     //根据房屋编号修改房屋信息
     @RequestMapping("/updateHouse")
     @ResponseBody
+    @ApiOperation(value = "根据房屋编号修改房屋信息", notes = "根据房屋编号修改房屋信息",response = String.class)
     public String updateHouse(House house){
 
         houseService.houseUpdate(house);
@@ -72,6 +79,7 @@ public class HouseController {
     //添加房屋的时候，是最后的添加操作
     @RequestMapping("/saveHouse")
     @ResponseBody
+    @ApiOperation(value = "添加房屋", notes = "添加房屋",response = String.class)
     public String savetHouse(House house, HttpServletResponse response, HttpServletRequest request){
 
         HttpSession session = request.getSession();

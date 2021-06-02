@@ -58,10 +58,10 @@ public class HouseholdMemberController {
     public String houseHoldMemberSave(HttpServletRequest request,HouseholdMember householdMember)throws Exception{
 
 
-        HttpSession session = request.getSession();
-        String theOwnerName = (String) session.getAttribute("theOwnerName");
-
-        householdMember.setTheOwnerCreate(theOwnerName);
+//        HttpSession session = request.getSession();
+//        String theOwnerName = (String) session.getAttribute("theOwnerName");
+//
+//        householdMember.setTheOwnerCreate(theOwnerName);
 
         //实现添加操作
         householdMemberService.householdMemberSave(householdMember);

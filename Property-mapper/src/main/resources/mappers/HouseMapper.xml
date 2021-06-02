@@ -102,7 +102,7 @@
         select *
         from house h,house_type_office hto,house_type_room htr,housing_status hs,unit u,floor f
         where h.floor_id = f.id and h.office_id = hto.id and h.room_id = htr.id and h.uint_id = u.id and h.housing_status_id = hs.housetype_id
-            and h.id= #{id} and
+            and h.id= #{id}
     </select>
 
     <delete id="deleteByHouse">
