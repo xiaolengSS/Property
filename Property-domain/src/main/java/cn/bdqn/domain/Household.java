@@ -11,7 +11,7 @@ public class Household {
     //身份证号
     private String idNumber;
     //关联房屋
-    private Integer houseId;
+    private House house;
     //关联重点关怀人员
     private Integer keyCared;
     //QQ
@@ -24,8 +24,14 @@ public class Household {
     private Integer age;
     //业主性别
     private String sex;
+    //小区ID
+    private Integer communityId;
     //关联小区
     private Community community;
+    //头像
+    private String headPortrait;
+    //备注
+    private String remarks;
 
     @Override
     public String toString() {
@@ -34,14 +40,17 @@ public class Household {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", idNumber='" + idNumber + '\'' +
-                ", houseId=" + houseId +
+                ", house=" + house +
                 ", keyCared=" + keyCared +
                 ", qq=" + qq +
                 ", accessKey=" + accessKey +
                 ", creator='" + creator + '\'' +
                 ", age=" + age +
                 ", sex='" + sex + '\'' +
+                ", communityId=" + communityId +
                 ", community=" + community +
+                ", headPortrait='" + headPortrait + '\'' +
+                ", remarks='" + remarks + '\'' +
                 '}';
     }
 
@@ -77,12 +86,12 @@ public class Household {
         this.idNumber = idNumber;
     }
 
-    public Integer getHouseId() {
-        return houseId;
+    public House getHouse() {
+        return house;
     }
 
-    public void setHouseId(Integer houseId) {
-        this.houseId = houseId;
+    public void setHouse(House house) {
+        this.house = house;
     }
 
     public Integer getKeyCared() {
@@ -133,11 +142,35 @@ public class Household {
         this.sex = sex;
     }
 
+    public Integer getCommunityId() {
+        return communityId;
+    }
+
+    public void setCommunityId(Integer communityId) {
+        this.communityId = communityId;
+    }
+
     public Community getCommunity() {
         return community;
     }
 
     public void setCommunity(Community community) {
         this.community = community;
+    }
+
+    public String getHeadPortrait() {
+        return headPortrait;
+    }
+
+    public void setHeadPortrait(String headPortrait) {
+        this.headPortrait = headPortrait;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 }
