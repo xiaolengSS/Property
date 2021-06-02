@@ -28,8 +28,10 @@ public interface HouseService {
     // 带分页查询的模糊查询
     public PageInfo<House> queryAllByPageAndHouse(Integer currentPage, Integer pageSize, House house);
 
+    //业主房屋解绑 id:业主id
+    public Integer changeByHouseholdUnbundle(Integer id);
 
-
-
+    //业主房屋绑定 id:业主id houseId：房屋ID communityId：小区ID
+    public Integer changeByHouseholdBinding(Integer id,Integer houseId);
 
 }

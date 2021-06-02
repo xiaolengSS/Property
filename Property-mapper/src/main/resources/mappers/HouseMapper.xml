@@ -140,6 +140,18 @@
         where number_id=#{numberId}
     </update>
 
+    <update id="updateByHousehoUnbundle">
+        UPDATE house
+        SET household_id = NULL
+        WHERE household_id = #{id}
+    </update>
+
+    <update id="updateByHousehoBind">
+        UPDATE house
+        SET household_id = #{houseId}
+        WHERE id = #{id}
+    </update>
+
     <insert id="insertByHouse">
         insert into house(floor_id,uint_id,number_id,houset_floor,room_id,office_id,squaremetre,housetcalculation,`desc`,house_number_id,housing_status_id)
         values(#{floorId},#{uintId},#{numberId},#{housetFloor},#{roomId},#{officeId},#{squaremetre},#{housetcalculation},#{desc},#{houseNumberId},#{housingStatusId})

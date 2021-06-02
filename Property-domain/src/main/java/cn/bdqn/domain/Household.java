@@ -10,8 +10,6 @@ public class Household {
     private String phone;
     //身份证号
     private String idNumber;
-    //房屋ID
-    private Integer houseId;
     //关联房屋
     private House house;
     //关联重点关怀人员
@@ -42,7 +40,6 @@ public class Household {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", idNumber='" + idNumber + '\'' +
-                ", houseId=" + houseId +
                 ", house=" + house +
                 ", keyCared=" + keyCared +
                 ", qq=" + qq +
@@ -87,14 +84,6 @@ public class Household {
 
     public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
-    }
-
-    public Integer getHouseId() {
-        return houseId;
-    }
-
-    public void setHouseId(Integer houseId) {
-        this.houseId = houseId;
     }
 
     public House getHouse() {
@@ -185,28 +174,3 @@ public class Household {
         this.remarks = remarks;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

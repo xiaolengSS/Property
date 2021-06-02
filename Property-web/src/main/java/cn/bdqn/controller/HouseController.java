@@ -3,7 +3,6 @@ package cn.bdqn.controller;
 import cn.bdqn.domain.Floor;
 import cn.bdqn.domain.House;
 import cn.bdqn.domain.Unit;
-import cn.bdqn.mapper.FloorMapper;
 import cn.bdqn.service.FloorService;
 import cn.bdqn.service.HouseService;
 import cn.bdqn.service.UnitService;
@@ -11,13 +10,11 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @RestController
 @RequestMapping("/house")
@@ -99,4 +96,17 @@ public class HouseController {
         return "添加成功！";
     }
 
+    //业主房屋解绑 id:业主id
+    @RequestMapping("/changeByHouseholdUnbundle")
+    @ApiOperation(value = "业主房屋解绑", notes = "业主房屋解绑",response = Integer.class)
+    public Integer changeByHouseholdUnbundle(Integer id){
+        return houseService.changeByHouseholdUnbundle(id);
+    }
+
+    //业主房屋绑定 id:业主id houseId：房屋ID
+    @RequestMapping("/changeByHouseholdBinding")
+    @ApiOperation(value = "业主房屋解绑", notes = "业主房屋解绑",response = Integer.class)
+    public Integer changeByHouseholdBinding(Integer id,Integer houseId){
+        return houseService.changeByHouseholdBinding(id,houseId);
+    }
 }

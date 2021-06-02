@@ -77,4 +77,16 @@ public class HouseServiceImpl implements HouseService {
         return pageInfo;
     }
 
+    //业主房屋解绑 id:业主id
+    @Override
+    public Integer changeByHouseholdUnbundle(Integer id) {
+        return houseMapper.updateByHousehoUnbundle(id);
+    }
+
+    //房屋绑定 id:业主id houseId：房屋ID
+    @Override
+    public Integer changeByHouseholdBinding(Integer id, Integer houseId) {
+        return houseMapper.updateByHousehoBind(id,houseId);
+    }
+
 }

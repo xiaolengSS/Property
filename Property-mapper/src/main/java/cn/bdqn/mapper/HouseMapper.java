@@ -21,4 +21,10 @@ public interface HouseMapper {
 
     //添加房屋信息
     public void insertByHouse(House house);
+
+    //房屋解绑 id:业主id
+    public Integer updateByHousehoUnbundle(Integer id);
+
+    //房屋绑定 id:业主id houseId：房屋ID
+    public Integer updateByHousehoBind(@Param("id") Integer id,@Param("houseId") Integer houseId);
 }
