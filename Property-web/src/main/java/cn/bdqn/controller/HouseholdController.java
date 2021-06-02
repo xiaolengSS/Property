@@ -1,6 +1,6 @@
 package cn.bdqn.controller;
 
-import cn.bdqn.domain.House;
+
 import cn.bdqn.domain.Household;
 import cn.bdqn.service.HouseholdService;
 import com.github.pagehelper.PageInfo;
@@ -8,10 +8,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -98,6 +101,19 @@ public class HouseholdController {
         householdService.deleteHousehold(id);
 
         return "删除成功！";
+    }
+
+
+    //业主房屋解绑 id:业主id
+    @RequestMapping("/changeByHouseholdUnbundle")
+    public Integer changeByHouseholdUnbundle(Integer id){
+        return householdService.changeByHouseholdUnbundle(id);
+    }
+
+    //业主房屋绑定 id:业主id houseId：房屋ID communityId：小区ID
+    @RequestMapping("/changeByHouseholdBinding")
+    public Integer changeByHouseholdBinding(Integer id,Integer houseId,Integer communityId){
+        return householdService.changeByHouseholdBinding(id,houseId,communityId);
     }
 
 

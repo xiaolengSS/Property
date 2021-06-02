@@ -20,4 +20,9 @@ public interface HouseholdService {
     //根据id删除业主
     public void deleteHousehold(Integer id);
 
+
+    //业主房屋解绑 id:业主id
+    public Integer changeByHouseholdUnbundle(Integer id);
+    //业主房屋绑定 id:业主id houseId：房屋ID communityId：小区ID
+    public Integer changeByHouseholdBinding(Integer id,Integer houseId,Integer communityId);
 }
