@@ -8,6 +8,8 @@ import cn.bdqn.service.HouseService;
 import cn.bdqn.service.UnitService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -96,16 +98,23 @@ public class HouseController {
         return "添加成功！";
     }
 
-    //业主房屋解绑 id:业主id
+    //房屋解绑
     @RequestMapping("/changeByHouseholdUnbundle")
     @ApiOperation(value = "业主房屋解绑", notes = "业主房屋解绑",response = Integer.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id", value="业主id", dataTypeClass = Integer.class)
+    })
     public Integer changeByHouseholdUnbundle(Integer id){
         return houseService.changeByHouseholdUnbundle(id);
     }
 
-    //业主房屋绑定 id:业主id houseId：房屋ID
+    //房屋绑定 id:业主id houseId：房屋ID
     @RequestMapping("/changeByHouseholdBinding")
     @ApiOperation(value = "业主房屋解绑", notes = "业主房屋解绑",response = Integer.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id", value="业主id", dataTypeClass = Integer.class),
+            @ApiImplicitParam(name="houseId", value="房屋ID",dataTypeClass = Integer.class)
+    })
     public Integer changeByHouseholdBinding(Integer id,Integer houseId){
         return houseService.changeByHouseholdBinding(id,houseId);
     }
