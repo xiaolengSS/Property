@@ -18,6 +18,8 @@ import javax.annotation.Resource;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+@CrossOrigin
 @Api(tags = "业主模块")
 @RequestMapping("/household")
 @RestController
