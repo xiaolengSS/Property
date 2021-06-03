@@ -3,17 +3,18 @@ package cn.bdqn;
 import com.github.pagehelper.PageHelper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-
 import java.util.Properties;
 
 @SpringBootApplication(scanBasePackages="cn.bdqn")
 @MapperScan(basePackages = {"cn.bdqn.mapper"})
 @EnableTransactionManagement
+//@EnableAutoConfiguration(exclude = { MultipartAutoConfiguration.class })
 public class PropertyApplication {
     //创建了一个sprig容器【将Beasn纳入到spring管理中】
     //启动Tomcat服务器
@@ -43,5 +44,4 @@ public class PropertyApplication {
         resolver.setMaxUploadSize(5 * 1024 * 1024 * 1024);// 上传文件大小 5G
         return resolver;
     }
-
 }

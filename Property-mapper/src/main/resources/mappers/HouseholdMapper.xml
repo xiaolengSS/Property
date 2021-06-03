@@ -102,26 +102,5 @@
             id = #{id}
     </delete>
 
-    <!-- 业主房屋解绑 -->
-    <update id="updateByHouseholdUnbundle">
-        update household
-        set house_id = null,community_id = null
-        where id = #{id}
-    </update>
-
-    <!-- 业主房屋绑定 -->
-    <update id="updateByHouseholdBinding">
-        update household
-        <set>
-            <if test="houseId != null">
-                house_id = #{houseId},
-            </if>
-            <if test="communityId != null">
-                community_id = #{communityId}
-            </if>
-        </set>
-        where id = #{id}
-    </update>
-
 
 </mapper>

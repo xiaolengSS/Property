@@ -60,15 +60,4 @@ public class HouseholdServiceImpl implements HouseholdService {
 
 
 
-    //业主房屋解绑 id:业主id
-    @Override
-    public Integer changeByHouseholdUnbundle(Integer id) {
-        return householdMapper.updateByHouseholdUnbundle(id);
-    }
-
-    //业主房屋绑定 id:业主id houseId：房屋ID communityId：小区ID
-    @Override
-    public Integer changeByHouseholdBinding(Integer id, Integer houseId, Integer communityId) {
-        return householdMapper.updateByHouseholdBinding(id,houseId,communityId);
-    }
 }

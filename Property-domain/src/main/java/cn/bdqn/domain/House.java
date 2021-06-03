@@ -6,6 +6,9 @@ public class House {
     //id
     private Integer id;
 
+    //业主id
+    private Integer householdId;
+
     //房屋编号
     private String numberId;
 
@@ -57,14 +60,11 @@ public class House {
     //关联业主表
     private Household household;
 
-    public Household getHousehold() {
-        return household;
-    }
-
     @Override
     public String toString() {
         return "House{" +
                 "id=" + id +
+                ", householdId=" + householdId +
                 ", numberId='" + numberId + '\'' +
                 ", roomId=" + roomId +
                 ", officeId=" + officeId +
@@ -85,58 +85,20 @@ public class House {
                 '}';
     }
 
-    public void setHousehold(Household household) {
-        this.household = household;
-    }
-
-    public HouseTypeRoom getHouseTypeRoom() {
-        return houseTypeRoom;
-    }
-
-    public void setHouseTypeRoom(HouseTypeRoom houseTypeRoom) {
-        this.houseTypeRoom = houseTypeRoom;
-    }
-
-    public HousingStatus getHousingStatus() {
-        return housingStatus;
-    }
-
-    public void setHousingStatus(HousingStatus housingStatus) {
-        this.housingStatus = housingStatus;
-    }
-
-    public Unit getUnit() {
-        return unit;
-    }
-
-    public void setUnit(Unit unit) {
-        this.unit = unit;
-    }
-
-
-
-    public Floor getFloor() {
-        return floor;
-    }
-
-    public void setFloor(Floor floor) {
-        this.floor = floor;
-    }
-
-    public HouseTypeOffice getHouseTypeOffice() {
-        return houseTypeOffice;
-    }
-
-    public void setHouseTypeOffice(HouseTypeOffice houseTypeOffice) {
-        this.houseTypeOffice = houseTypeOffice;
-    }
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getHouseholdId() {
+        return householdId;
+    }
+
+    public void setHouseholdId(Integer householdId) {
+        this.householdId = householdId;
     }
 
     public String getNumberId() {
@@ -227,6 +189,51 @@ public class House {
         this.desc = desc;
     }
 
+    public HouseTypeOffice getHouseTypeOffice() {
+        return houseTypeOffice;
+    }
+
+    public void setHouseTypeOffice(HouseTypeOffice houseTypeOffice) {
+        this.houseTypeOffice = houseTypeOffice;
+    }
+
+    public HouseTypeRoom getHouseTypeRoom() {
+        return houseTypeRoom;
+    }
+
+    public void setHouseTypeRoom(HouseTypeRoom houseTypeRoom) {
+        this.houseTypeRoom = houseTypeRoom;
+    }
+
+    public HousingStatus getHousingStatus() {
+        return housingStatus;
+    }
+
+    public void setHousingStatus(HousingStatus housingStatus) {
+        this.housingStatus = housingStatus;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
+
+    public Floor getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Floor floor) {
+        this.floor = floor;
+    }
+
+    public Household getHousehold() {
+        return household;
+    }
+
+    public void setHousehold(Household household) {
+        this.household = household;
+    }
 }
-
-

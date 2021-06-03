@@ -17,7 +17,6 @@
     <!-- 统一管理jar包版本 -->
     <properties>
         <spring.version>5.2.1.RELEASE</spring.version>
-        <log4j.version>1.2.17</log4j.version>
         <mysql.version>5.1.6</mysql.version>
         <mybatis.version>3.5.3</mybatis.version>
     </properties>
@@ -45,6 +44,7 @@
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-jasper</artifactId>
+                <version>6.0.29</version>
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>

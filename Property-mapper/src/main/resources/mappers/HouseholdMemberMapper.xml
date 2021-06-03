@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.mapper.HouseholdMemberMapper">
+
+    <resultMap id="HouseholdMemberResultMap" type="cn.bdqn.domain.HouseholdMember">
+
+        <id column="the_owner_id" property="theOwnerId"/>
+        <result column="the_owner_name" property="theOwnerName"/>
+        <result column="householdid" property="householdId"/>
+        <result column="the_owner_age" property="theOwnerAge"/>
+        <result column="the_owner_sex" property="theOwnerSex"/>
+        <result column="the_owner_type_id" property="theOwnerTypeId"/>
+        <result column="the_owner_identity_card" property="theOwnerIdentityCard"/>
+        <result column="the_owner_contact_information" property="theOwnerContactInformation"/>
+        <result column="the_owner_create" property="theOwnerCreate"/>
+        <result column="the_owner_remark" property="theOwnerRemark"/>
+        <result column="the_owner_remark_photo" property="theOwnerRemarkPhoto"/>
+        <result column="access_key" property="accessKey"/>
+        <result column="qq" property="qq"/>
+
+        <association property="theOwnerType" javaType="cn.bdqn.domain.TheOwnerType">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+        </association>
+    </resultMap>
+
+    <!--householdmember表的根据业主id查询成员信息-->
+    <select id="householdMemberSelectByHouseholdId" resultMap="HouseholdMemberResultMap">
+        select the_owner_id,the_owner_name,householdid,the_owner_age,the_owner_sex,
+        the_owner_type_id,the_owner_identity_card,the_owner_contact_information,
+        the_owner_create,the_owner_remark,the_owner_remark_photo,access_key,qq
+        from household_member
+        where householdid=#{householdId}
+    </select>
+
+    <!--householdmember表的根据成员id删除成员信息-->
+    <delete id="householdMemberDeleteByTheOwnerId">
+        delete from household_member where the_owner_id = #{theOwnerId}
+    </delete>
+
+    <!--householdmember表的根据成员id修改成员信息-->
+    <update id="householdMemberUpdate">
+        update household_member
+        <set>
+            <if test="theOwnerName!=null and theOwnerName!='' ">
+                ,the_owner_name=#{theOwnerName}
+            </if>
+            <if test="theOwnerSex!=null and theOwnerSex!='' ">
+                ,the_owner_sex=#{theOwnerSex}
+            </if>
+            <if test="theOwnerAge!=null and theOwnerAge!='' ">
+                ,the_owner_age=#{theOwnerAge}
+            </if>
+            <if test="theOwnerTypeId!=null and theOwnerTypeId!='' ">
+                ,the_owner_type_id=#{theOwnerTypeId}
+            </if>
+            <if test="theOwnerIdentityCard!=null and theOwnerIdentityCard!='' ">
+                ,the_owner_identity_card=#{theOwnerIdentityCard}
+            </if>
+            <if test="theOwnerRemark!=null and theOwnerRemark!='' ">
+                ,the_owner_remark=#{theOwnerRemark}
+            </if>
+            <if test="theOwnerContactInformation!=null and theOwnerContactInformation!='' ">
+                ,the_owner_contact_information=#{theOwnerContactInformation}
+            </if>
+            <if test="accessKey!=null and accessKey!='' ">
+                ,access_key=#{accessKey}
+            </if>
+            <if test="qq!=null and qq!='' ">
+                ,qq=#{qq}
+            </if>
+            <if test="theOwnerRemarkPhoto!=null and theOwnerRemarkPhoto!='' ">
+                ,the_owner_remark_photo=#{theOwnerRemarkPhoto}
+            </if>
+        </set>
+        where the_owner_id=#{theOwnerId}
+    </update>
+
+    <!--householdmember表的修改成员信息-->
+    <insert id="householdMemberInsert">
+        insert into household_member(the_owner_name,the_owner_sex,the_owner_age,the_owner_type_id,the_owner_identity_card,the_owner_contact_information,access_key,qq,householdid,the_owner_create,the_owner_remark,the_owner_remark_photo)
+        value(#{theOwnerName},#{theOwnerSex},#{theOwnerAge},#{theOwnerTypeId},#{theOwnerIdentityCard},#{theOwnerContactInformation},#{accessKey},#{qq},#{householdId},#{theOwnerCreate},#{theOwnerRemark},#{theOwnerRemarkPhoto})
+    </insert>
+
+
+
+</mapper>
