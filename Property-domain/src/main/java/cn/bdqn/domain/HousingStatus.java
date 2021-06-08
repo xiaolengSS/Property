@@ -3,8 +3,6 @@ package cn.bdqn.domain;
 import java.util.List;
 //房屋状态表
 public class HousingStatus {
-
-
     //id
     private Integer housetypeId;
 
