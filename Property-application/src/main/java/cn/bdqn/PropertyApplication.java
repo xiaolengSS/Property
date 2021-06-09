@@ -3,15 +3,15 @@ package cn.bdqn;
 import com.github.pagehelper.PageHelper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+
 import java.util.Properties;
 
-@SpringBootApplication(scanBasePackages="cn.bdqn")
+@SpringBootApplication
 @MapperScan(basePackages = {"cn.bdqn.mapper"})
 @EnableTransactionManagement
 //@EnableAutoConfiguration(exclude = { MultipartAutoConfiguration.class })

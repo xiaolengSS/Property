@@ -44,5 +44,13 @@
 
     </dependencies>
 
-
+    <!-- 可以将我们的应用打包成一个jar包  -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
