@@ -85,6 +85,18 @@ public class Unit {
         this.unitRemarks = unitRemarks;
     }
 
+    public void setUnitArea(double unitArea) {
+        this.unitArea = unitArea;
+    }
+
+    public Floor getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Floor floor) {
+        this.floor = floor;
+    }
+
     @Override
     public String toString() {
         return "Unit{" +
@@ -96,6 +108,7 @@ public class Unit {
                 ", unitLift=" + unitLift +
                 ", unitCreator='" + unitCreator + '\'' +
                 ", unitRemarks='" + unitRemarks + '\'' +
+                ", floor=" + floor +
                 '}';
     }
 }
