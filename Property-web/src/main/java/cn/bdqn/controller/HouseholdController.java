@@ -67,10 +67,10 @@ public class HouseholdController {
     @ResponseBody
     public String saveHousehold(HttpServletRequest request, Household household) {
 
-        HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
+        //HttpSession session = request.getSession();
+       // String username = (String) session.getAttribute("username");
 
-        household.setCreator(username);
+        household.setCreator("猜猜");
 
         int i = householdService.saveHousehold(household);
 
