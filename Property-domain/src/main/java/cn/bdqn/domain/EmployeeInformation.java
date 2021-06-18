@@ -1,5 +1,7 @@
 package cn.bdqn.domain;
 
+import java.util.Date;
+
 //员工
 public class EmployeeInformation {
     //id
@@ -20,6 +22,16 @@ public class EmployeeInformation {
     private String address;
     //照片
     private String photo;
+    //认证方式
+    private AuthenticationMethod authenticationMethodId;
+    //认证名称
+    private String authenticationName;
+    //认证id
+    private String authenticationId;
+    //认证状态（0：已认证，1：未认证）
+    private Integer authenticationState;
+    //认证时间
+    private Date authenticationData;
 
     @Override
     public String toString() {
@@ -33,7 +45,52 @@ public class EmployeeInformation {
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", photo='" + photo + '\'' +
+                ", authenticationMethodId=" + authenticationMethodId +
+                ", authenticationName='" + authenticationName + '\'' +
+                ", authenticationId='" + authenticationId + '\'' +
+                ", authenticationState=" + authenticationState +
+                ", authenticationData=" + authenticationData +
                 '}';
+    }
+
+    public AuthenticationMethod getAuthenticationMethodId() {
+        return authenticationMethodId;
+    }
+
+    public void setAuthenticationMethodId(AuthenticationMethod authenticationMethodId) {
+        this.authenticationMethodId = authenticationMethodId;
+    }
+
+    public String getAuthenticationName() {
+        return authenticationName;
+    }
+
+    public void setAuthenticationName(String authenticationName) {
+        this.authenticationName = authenticationName;
+    }
+
+    public String getAuthenticationId() {
+        return authenticationId;
+    }
+
+    public void setAuthenticationId(String authenticationId) {
+        this.authenticationId = authenticationId;
+    }
+
+    public Integer getAuthenticationState() {
+        return authenticationState;
+    }
+
+    public void setAuthenticationState(Integer authenticationState) {
+        this.authenticationState = authenticationState;
+    }
+
+    public Date getAuthenticationData() {
+        return authenticationData;
+    }
+
+    public void setAuthenticationData(Date authenticationData) {
+        this.authenticationData = authenticationData;
     }
 
     public Integer getId() {
