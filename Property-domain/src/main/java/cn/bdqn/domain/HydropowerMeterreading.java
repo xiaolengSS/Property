@@ -6,8 +6,6 @@ import java.util.Date;
 public class HydropowerMeterreading {
     //id
     private Integer id;
-    //对象名称
-    private String object_name;
     //关联房屋表
     private House houseId;
     //关联缴费类型
@@ -33,7 +31,6 @@ public class HydropowerMeterreading {
     public String toString() {
         return "HydropowerMeterreading{" +
                 "id=" + id +
-                ", object_name='" + object_name + '\'' +
                 ", houseId=" + houseId +
                 ", tableTypeId=" + tableTypeId +
                 ", degreeOfPreviousPeriod=" + degreeOfPreviousPeriod +
@@ -53,14 +50,6 @@ public class HydropowerMeterreading {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getObject_name() {
-        return object_name;
-    }
-
-    public void setObject_name(String object_name) {
-        this.object_name = object_name;
     }
 
     public House getHouseId() {
