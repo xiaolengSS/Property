@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.mapper.RepairSettingsMapper">
+
+    <resultMap id="RepairSettingsResultMap" type="cn.bdqn.domain.RepairSettings">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="dispatch_id" property="dispatchId"/>
+        <result column="common_areas" property="commonAreas"/>
+        <result column="back_visit_settings_id" property="backVisitSettingsId"/>
+        <result column="explain" property="explain"/>
+        <result column="creation_time" property="creationTime"/>
+        <result column="dispatch_type" property="dispatchType"/>
+
+        <association property="repairSettings" javaType="cn.bdqn.domain.Dispatch">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+        </association>
+    </resultMap>
+
+    <select id="repairSettingsSelectVague" resultMap="RepairSettingsResultMap">
+        select id,`name`,dispatch_id,common_areas,back_visit_settings_id,`explain`,creation_time,dispatch_type
+        from repair_settings
+        <where>
+            <if test="name != null and name !=''">
+                and `name` like concat('%',#{`name`},'%')
+            </if>
+            <if test="dispatchId != null and dispatchId != ''">
+                and dispatch_id like concat('%',#{dispatch_id},'')
+            </if>
+            <if test="dispatchType != null and dispatchType != ''">
+                and dispatch_type like concat('%',#{dispatch_type},'')
+            </if>
+            <if test="id != null and id != ''">
+                and id like concat('%',#{id},'')
+            </if>
+        </where>
+    </select>
+
+    <update id="repairSettingsUpdateById">
+        update repair_settings
+        <set>
+            <if test="name != null and name!=''">
+                ,`name` = #{`name`}
+            </if>
+            <if test="dispatchId != null and dispatchId !=''">
+                ,dispatch_id = #{dispatch_id}
+            </if>
+            <if test="commonAreas != null and commonAreas !=''">
+                ,common_areas =#{common_areas}
+            </if>
+            <if test="backVisitSettingsId != null and backVisitSettingsId=''">
+                ,back_visit_settings_id =#{back_visit_settings_id}
+            </if>
+            <if test="explain != null and explain=''">
+                ,explain = #{explain}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="repairSettingsInsert">
+        insert into repair_settings(`name`,dispatch_id,common_areas,back_visit_settings_id,`explain`,creation_time,dispatch_type)
+        values(#{name},#{dispatchId},#{commonAreas},#{backVisitSettingsId},#{explain},#{creationTime},#{dispatchType})
+    </insert>
+
+    <delete id="repairSettingsDeleteById">
+        delete from repair_settings where id = #{id}
+    </delete>
+
+</mapper>
