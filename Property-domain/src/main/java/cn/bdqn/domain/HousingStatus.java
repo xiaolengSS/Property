@@ -1,11 +1,7 @@
 package cn.bdqn.domain;
 
 import java.util.List;
-
-/**
- * @author zhangcong
- * @date 2021/6/18 -17:19
- */
+//房屋状态表
 public class HousingStatus {
     //id
     private Integer housetypeId;
