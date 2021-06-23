@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.mapper.EmployeeInformationMapper">
+
+    <resultMap id="EmployeeInformationResultMap" type="cn.bdqn.domain.EmployeeInformation">
+        <id column="id" property="id"/>
+        <result column="department_information_id" property="departmentInformationId"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="employee_position_id" property="employeePositionId"/>
+        <result column="employee_email" property="employeeEmail"/>
+        <result column="phone" property="phone"/>
+        <result column="address" property="address"/>
+        <result column="photo" property="photo"/>
+        <result column="authentication_method_id" property="authenticationMethodId"/>
+        <result column="authentication_name" property="authenticationName"/>
+        <result column="authentication_id" property="authenticationId"/>
+        <result column="authentication_state" property="authenticationState"/>
+        <result column="authentication_data" property="authenticationData"/>
+
+        <association property="departmentInformation" javaType="cn.bdqn.domain.DepartmentInformation">
+            <id column="id" property="id"/>
+            <result column="company_information_id" property="companyInformationId"/>
+            <result column="name" property="name"/>
+            <result column="organization_level_department" property="organizationLevelDepartment"/>
+            <result column="describe" property="describe"/>
+        </association>
+
+        <association property="authenticationMethod" javaType="cn.bdqn.domain.AuthenticationMethod">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="authentication_qr_code" property="authenticationQrCode"/>
+        </association>
+
+        <association property="employeePosition" javaType="cn.bdqn.domain.EmployeePosition">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+        </association>
+
+        <association property="companyInformation" javaType="cn.bdqn.domain.CompanyInformation">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="organization_level" property="organizationLevel"/>
+            <result column="computer_organization" property="computerOrganization"/>
+            <result column="describe" property="describe"/>
+        </association>
+    </resultMap>
+
+    <!--对员工信息做的模糊查询操作：（密码，分公司，部门，员工名称，手机号，员工id）-->
+    <select id="employeeInformationSelectVague" resultMap="EmployeeInformationResultMap">
+        select *
+        from employee_information ei,department_information di,authentication_method am,employee_position ep,company_information ci
+        <where>
+            ei.department_information_id = di.id and ei.employee_position_id = ep.id and ei.authentication_method_id = am.id and di.company_information_id = ci.id
+            <if test=" != null and != ''">
+                and
+            </if>
+            <if test=" != null and != ''">
+                and
+            </if>
+            <if test=" != null and != ''">
+                and
+            </if>
+            <if test=" != null and != ''">
+                and
+            </if>
+            <if test=" != null and != ''">
+                and
+            </if>
+            <if test=" != null and != ''">
+                and
+            </if>
+        </where>
+    </select>
+
+    <!--根据员工id进行修改-->
+    <update id="employeeInformationUpdateById">
+
+    </update>
+
+    <!--根据员工id进行删除-->
+    <delete id="employeeInformationDeleteById">
+
+    </delete>
+
+    <!--添加员工信息-->
+    <insert id="employeeInformationInsert">
+
+    </insert>
+
+</mapper>
