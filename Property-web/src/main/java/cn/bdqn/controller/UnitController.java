@@ -74,7 +74,6 @@ public class UnitController {
         }
 
         return data;
-
     }
 
     //房屋表要用到的方法

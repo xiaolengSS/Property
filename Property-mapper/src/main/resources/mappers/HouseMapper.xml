@@ -166,4 +166,24 @@
         select id,office_name
         from house_type_office
     </select>
+
+
+    <!--根据楼栋、单元、房屋条件进行查询其下数据;水电抄表需调用-->
+    <select id="selectByFloorAndUintAndHouse">
+        SELECT
+            id,floor_id as floorId,uint_id as uintId,house_number as houseNumberId
+        FROM
+            house
+        <where>
+            <if test="floorId != null and floorId != ''">
+                floor_id = #{floorId}
+            </if>
+            <if test="unitId != null and unitId != ''">
+                AND uint_id = #{unitId}
+            </if>
+            <if test="houseNumberId != null and houseNumberId != ''">
+                AND house_number = #{houseNumberId}
+            </if>
+        </where>
+    </select>
 </mapper>

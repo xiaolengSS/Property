@@ -6,10 +6,14 @@ import java.util.Date;
 public class HydropowerMeterreading {
     //id
     private Integer id;
+    //房屋表id
+    private Integer houseId;
     //关联房屋表
-    private House houseId;
+    private House house;
+    //缴费类型id
+    private Integer tableTypeId;
     //关联缴费类型
-    private TableType tableTypeId;
+    private TableType tableType;
     //上期度数
     private Double degreeOfPreviousPeriod;
     //本期度数
@@ -24,6 +28,8 @@ public class HydropowerMeterreading {
     private Date readingTimeOfThisIssue;
     //创建时间
     private Date creationTime;
+    //是否发送短信
+    private Integer isSend;
     //备注
     private String desc;
 
@@ -32,7 +38,9 @@ public class HydropowerMeterreading {
         return "HydropowerMeterreading{" +
                 "id=" + id +
                 ", houseId=" + houseId +
+                ", house=" + house +
                 ", tableTypeId=" + tableTypeId +
+                ", tableType=" + tableType +
                 ", degreeOfPreviousPeriod=" + degreeOfPreviousPeriod +
                 ", currentDegree=" + currentDegree +
                 ", currentExpenses=" + currentExpenses +
@@ -40,8 +48,17 @@ public class HydropowerMeterreading {
                 ", readingTimeOfLastIssue=" + readingTimeOfLastIssue +
                 ", readingTimeOfThisIssue=" + readingTimeOfThisIssue +
                 ", creationTime=" + creationTime +
+                ", isSend=" + isSend +
                 ", desc='" + desc + '\'' +
                 '}';
+    }
+
+    public Integer getIsSend() {
+        return isSend;
+    }
+
+    public void setIsSend(Integer isSend) {
+        this.isSend = isSend;
     }
 
     public Integer getId() {
@@ -52,20 +69,20 @@ public class HydropowerMeterreading {
         this.id = id;
     }
 
-    public House getHouseId() {
-        return houseId;
-    }
-
-    public void setHouseId(House houseId) {
-        this.houseId = houseId;
-    }
-
-    public TableType getTableTypeId() {
+    public Integer getTableTypeId() {
         return tableTypeId;
     }
 
-    public void setTableTypeId(TableType tableTypeId) {
+    public void setTableTypeId(Integer tableTypeId) {
         this.tableTypeId = tableTypeId;
+    }
+
+    public TableType getTableType() {
+        return tableType;
+    }
+
+    public void setTableType(TableType tableType) {
+        this.tableType = tableType;
     }
 
     public Double getDegreeOfPreviousPeriod() {
@@ -74,6 +91,22 @@ public class HydropowerMeterreading {
 
     public void setDegreeOfPreviousPeriod(Double degreeOfPreviousPeriod) {
         this.degreeOfPreviousPeriod = degreeOfPreviousPeriod;
+    }
+
+    public Integer getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(Integer houseId) {
+        this.houseId = houseId;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
     }
 
     public Double getCurrentDegree() {
