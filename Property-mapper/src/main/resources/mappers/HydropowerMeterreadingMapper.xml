@@ -90,4 +90,12 @@
         where
             hydropower_meterreading.house_id = #{houseId} ORDER BY creation_time desc LIMIT 1
     </select>
+
+    <!--添加水电抄表信息-->
+    <insert id="insertBean">
+        INSERT INTO hydropower_meterreading
+            (house_id,table_type_id,degree_of_previous_period,current_degree,current_expenses,previous_period_expenses,reading_time_of_last_issue,reading_time_of_this_issue,creation_time,issend,desc)
+        VALUES
+            (#{houseId}, #{tableTypeId}, #{degreeOfPreviousPeriod}, #{currentDegree}, #{currentExpenses}, #{previousPeriodExpenses}, #{readingTimeOfLastIssue}, #{readingTimeOfThisIssue}, #{creationTime}, #{isSend}, #{desc});
+    </insert>
 </mapper>
