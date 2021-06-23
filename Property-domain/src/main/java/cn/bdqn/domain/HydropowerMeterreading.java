@@ -6,8 +6,10 @@ import java.util.Date;
 public class HydropowerMeterreading {
     //id
     private Integer id;
+    //房屋表id
+    private Integer houseId;
     //关联房屋表
-    private House houseId;
+    private House house;
     //关联项目表
     private ReadingCharge readingChargeId;
     //缴费类型id
@@ -39,6 +41,7 @@ public class HydropowerMeterreading {
         return "HydropowerMeterreading{" +
                 "id=" + id +
                 ", houseId=" + houseId +
+                ", house=" + house +
                 ", readingChargeId=" + readingChargeId +
                 ", tableTypeId=" + tableTypeId +
                 ", tableType=" + tableType +
@@ -54,12 +57,20 @@ public class HydropowerMeterreading {
                 '}';
     }
 
-    public House getHouseId() {
+    public Integer getHouseId() {
         return houseId;
     }
 
-    public void setHouseId(House houseId) {
+    public void setHouseId(Integer houseId) {
         this.houseId = houseId;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
     }
 
     public ReadingCharge getReadingChargeId() {
