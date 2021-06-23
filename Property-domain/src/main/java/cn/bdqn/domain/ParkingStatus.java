@@ -1,17 +1,17 @@
 package cn.bdqn.domain;
 
-//员工岗位
-public class EmployeePosition {
+//停车位状态
+public class ParkingStatus {
     //id
     private Integer id;
-    //员工岗位
-    private String name;
+    //状态
+    private String status;
 
     @Override
     public String toString() {
-        return "EmployeePosition{" +
+        return "ParkingStatus{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 
@@ -23,11 +23,11 @@ public class EmployeePosition {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getStatus() {
+        return status;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

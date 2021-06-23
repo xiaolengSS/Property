@@ -6,14 +6,16 @@ import java.util.Date;
 public class EmployeeInformation {
     //id
     private Integer id;
+    //关联公司id
+    private CompanyInformation companyInformationId;
     //(组织)部门信息id
-    private DepartmentInformation departmentInformationId;
+    private String departmentInformation;
     //员工名称
     private String name;
     //员工性别
     private String sex;
     //员工岗位
-    private EmployeePosition employeePositionId;
+    private String employeePosition;
     //员工邮箱
     private String employeeEmail;
     //手机号
@@ -22,75 +24,21 @@ public class EmployeeInformation {
     private String address;
     //照片
     private String photo;
-    //认证方式
-    private AuthenticationMethod authenticationMethodId;
-    //认证名称
-    private String authenticationName;
-    //认证id
-    private String authenticationId;
-    //认证状态（0：已认证，1：未认证）
-    private Integer authenticationState;
-    //认证时间
-    private Date authenticationData;
 
     @Override
     public String toString() {
         return "EmployeeInformation{" +
                 "id=" + id +
-                ", departmentInformationId=" + departmentInformationId +
+                ", companyInformationId=" + companyInformationId +
+                ", departmentInformation='" + departmentInformation + '\'' +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
-                ", employeePositionId=" + employeePositionId +
+                ", employeePosition='" + employeePosition + '\'' +
                 ", employeeEmail='" + employeeEmail + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", photo='" + photo + '\'' +
-                ", authenticationMethodId=" + authenticationMethodId +
-                ", authenticationName='" + authenticationName + '\'' +
-                ", authenticationId='" + authenticationId + '\'' +
-                ", authenticationState=" + authenticationState +
-                ", authenticationData=" + authenticationData +
                 '}';
-    }
-
-    public AuthenticationMethod getAuthenticationMethodId() {
-        return authenticationMethodId;
-    }
-
-    public void setAuthenticationMethodId(AuthenticationMethod authenticationMethodId) {
-        this.authenticationMethodId = authenticationMethodId;
-    }
-
-    public String getAuthenticationName() {
-        return authenticationName;
-    }
-
-    public void setAuthenticationName(String authenticationName) {
-        this.authenticationName = authenticationName;
-    }
-
-    public String getAuthenticationId() {
-        return authenticationId;
-    }
-
-    public void setAuthenticationId(String authenticationId) {
-        this.authenticationId = authenticationId;
-    }
-
-    public Integer getAuthenticationState() {
-        return authenticationState;
-    }
-
-    public void setAuthenticationState(Integer authenticationState) {
-        this.authenticationState = authenticationState;
-    }
-
-    public Date getAuthenticationData() {
-        return authenticationData;
-    }
-
-    public void setAuthenticationData(Date authenticationData) {
-        this.authenticationData = authenticationData;
     }
 
     public Integer getId() {
@@ -101,12 +49,20 @@ public class EmployeeInformation {
         this.id = id;
     }
 
-    public DepartmentInformation getDepartmentInformationId() {
-        return departmentInformationId;
+    public CompanyInformation getCompanyInformationId() {
+        return companyInformationId;
     }
 
-    public void setDepartmentInformationId(DepartmentInformation departmentInformationId) {
-        this.departmentInformationId = departmentInformationId;
+    public void setCompanyInformationId(CompanyInformation companyInformationId) {
+        this.companyInformationId = companyInformationId;
+    }
+
+    public String getDepartmentInformation() {
+        return departmentInformation;
+    }
+
+    public void setDepartmentInformation(String departmentInformation) {
+        this.departmentInformation = departmentInformation;
     }
 
     public String getName() {
@@ -125,12 +81,12 @@ public class EmployeeInformation {
         this.sex = sex;
     }
 
-    public EmployeePosition getEmployeePositionId() {
-        return employeePositionId;
+    public String getEmployeePosition() {
+        return employeePosition;
     }
 
-    public void setEmployeePositionId(EmployeePosition employeePositionId) {
-        this.employeePositionId = employeePositionId;
+    public void setEmployeePosition(String employeePosition) {
+        this.employeePosition = employeePosition;
     }
 
     public String getEmployeeEmail() {
