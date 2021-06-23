@@ -3,4 +3,91 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.bdqn.mapper.HydropowerMeterreadingMapper">
+<!--水电抄表-->
+
+    <!--selectAllByWhere查询全部数据的Map映射-->
+    <resultMap id="selectAllByWhereByMap" type="cn.bdqn.domain.HydropowerMeterreading">
+        <id column="id" property="id"/>
+        <result column="degree_of_previous_period" property=""/>
+        <result column="current_degree" property="currentDegree"/>
+        <result column="current_expenses" property="currentExpenses"/>
+        <result column="previous_period_expenses" property="previousPeriodExpenses"/>
+        <result column="reading_time_of_last_issue" property="readingTimeOfLastIssue"/>
+        <result column="reading_time_of_this_issue" property="readingTimeOfThisIssue"/>
+        <result column="creation_time" property="creationTime"/>
+        <result column="issend" property="isSend"/>
+        <result column="desc" property="desc"/>
+        <result column="tableTypeId" property="tableTypeId" />
+        <result column="houseId" property="houseId" />
+
+        <association property="tableType" javaType="cn.bdqn.domain.TableType">
+            <id column="tableTypeId" property="id"/>
+            <result column="table_type_name" property="tableTypeName"/>
+        </association>
+
+        <association property="house" javaType="cn.bdqn.domain.House">
+            <id column="houseId" property="id"/>
+            <result column="number_id" property="numberId"/>
+        </association>
+
+    </resultMap>
+
+    <!--查询全部数据/根据条件查询多条数据-->
+    <select id="selectAllByWhere" resultMap="selectAllByWhereByMap">
+        SELECT
+            hm.id,tt.id as tableTypeId,tt.table_type_name,house.id as houseId,house.number_id,
+            hm.degree_of_previous_period,hm.current_degree,hm.current_expenses,hm.previous_period_expenses,
+            hm.reading_time_of_last_issue,hm.reading_time_of_this_issue,hm.creation_time,hm.issend,hm.`desc`
+        FROM
+            hydropower_meterreading as hm,house,table_type as tt
+        WHERE
+            hm.house_id = house.id AND
+            hm.table_type_id = tt.id
+            <if test="house.numberId != null and house.numberId != ''">
+                and  house.number_id = #{house.numberId}
+            </if>
+            <if test="tableTypeId != null and tableTypeId != null">
+                tt.id = #{tableTypeId}
+            </if>
+            <if test="id != null and id != ''">
+                hm.id = #{id}
+            </if>
+    </select>
+
+    <!--根据id查询信息-->
+    <select id="selectById">
+        select
+            id,degree_of_previous_period as degreeOfPreviousPeriod,current_degree as currentDegree,reading_time_of_last_issue as readingTimeOfLastIssue,reading_time_of_this_issue as readingTimeOfThisIssue,issend as isSend,`desc`
+        from
+            hydropower_meterreading
+        where
+            hydropower_meterreading.id = #{id}
+    </select>
+
+    <!--根据id修改信息-->
+    <update id="updateById">
+        update
+            hydropower_meterreading
+        set
+            current_degree = #{currentDegree},reading_time_of_this_issue = #{readingTimeOfThisIssue},`desc` = #{desc}
+        where
+            id = #{id}
+    </update>
+
+    <!--根据id删除信息-->
+    <delete id="deleteById">
+        delete
+            from hydropower_meterreading
+        where
+            id = #{id}
+    </delete>
+
+    <!--查询单条上期数据-->
+    <select id="selectByLimit">
+        select
+            current_expenses as currentExpenses,creation_time as creationTime,reading_time_of_last_issue readingTimeOfLastIssue,previous_period_expenses as previousPeriodExpenses
+        from hydropower_meterreading
+        where
+            hydropower_meterreading.house_id = #{houseId} ORDER BY creation_time desc LIMIT 1
+    </select>
 </mapper>
