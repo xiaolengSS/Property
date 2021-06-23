@@ -6,38 +6,15 @@
 
     <resultMap id="EmployeeInformationResultMap" type="cn.bdqn.domain.EmployeeInformation">
         <id column="id" property="id"/>
-        <result column="department_information_id" property="departmentInformationId"/>
+        <result column="companyInformation_id" property="companyInformationId"/>
+        <result column="department_information" property="departmentInformation"/>
         <result column="name" property="name"/>
         <result column="sex" property="sex"/>
-        <result column="employee_position_id" property="employeePositionId"/>
+        <result column="employee_position" property="employeePosition"/>
         <result column="employee_email" property="employeeEmail"/>
         <result column="phone" property="phone"/>
         <result column="address" property="address"/>
         <result column="photo" property="photo"/>
-        <result column="authentication_method_id" property="authenticationMethodId"/>
-        <result column="authentication_name" property="authenticationName"/>
-        <result column="authentication_id" property="authenticationId"/>
-        <result column="authentication_state" property="authenticationState"/>
-        <result column="authentication_data" property="authenticationData"/>
-
-        <association property="departmentInformation" javaType="cn.bdqn.domain.DepartmentInformation">
-            <id column="id" property="id"/>
-            <result column="company_information_id" property="companyInformationId"/>
-            <result column="name" property="name"/>
-            <result column="organization_level_department" property="organizationLevelDepartment"/>
-            <result column="describe" property="describe"/>
-        </association>
-
-        <association property="authenticationMethod" javaType="cn.bdqn.domain.AuthenticationMethod">
-            <id column="id" property="id"/>
-            <result column="name" property="name"/>
-            <result column="authentication_qr_code" property="authenticationQrCode"/>
-        </association>
-
-        <association property="employeePosition" javaType="cn.bdqn.domain.EmployeePosition">
-            <id column="id" property="id"/>
-            <result column="name" property="name"/>
-        </association>
 
         <association property="companyInformation" javaType="cn.bdqn.domain.CompanyInformation">
             <id column="id" property="id"/>
@@ -48,43 +25,70 @@
         </association>
     </resultMap>
 
-    <!--对员工信息做的模糊查询操作：（密码，分公司，部门，员工名称，手机号，员工id）-->
+    <!--对员工信息做的模糊查询操作：（分公司，部门，员工名称，手机号，员工id）-->
     <select id="employeeInformationSelectVague" resultMap="EmployeeInformationResultMap">
         select *
-        from employee_information ei,department_information di,authentication_method am,employee_position ep,company_information ci
+        from
+        employee_information as ei,company_information as ci
         <where>
-            ei.department_information_id = di.id and ei.employee_position_id = ep.id and ei.authentication_method_id = am.id and di.company_information_id = ci.id
-            <if test=" != null and != ''">
-                and
+            ei.companyInformation_id = ci.id
+            <if test=" companyInformationId!= null and companyInformationId!= ''">
+                and companyInformation_id = #{companyInformationId}
             </if>
-            <if test=" != null and != ''">
-                and
+            <if test=" departmentInformation!= null and departmentInformation!= ''">
+                and department_information = #{departmentInformation}
             </if>
-            <if test=" != null and != ''">
-                and
+            <if test=" name!= null and name!= ''">
+                and `name` = #{name}
             </if>
-            <if test=" != null and != ''">
-                and
+            <if test=" phone!= null and phone!= ''">
+                and phone = #{phone}
             </if>
-            <if test=" != null and != ''">
-                and
+            <if test=" id!= null and id!= ''">
+                and id = #{id}
             </if>
         </where>
     </select>
 
-    <!--根据员工id进行修改-->
+    <!--根据员工id进行修改（员工姓名，员工邮箱，员工岗位，员工电话，员工性别，家庭住址，照片）-->
     <update id="employeeInformationUpdateById">
-
+        update employee_information
+        <set>
+            <if test=" name!=null and  name!= ''">
+                ,`name` = #{name}
+            </if>
+            <if test=" employeeEmail !=null and employeeEmail != ''">
+                ,employee_email = #{employeeEmail}
+            </if>
+            <if test=" employeePosition !=null and employeePosition != ''">
+                ,employee_position = #{employeePosition}
+            </if>
+            <if test=" phone !=null and phone != ''">
+                ,phone = #{phone}
+            </if>
+            <if test=" sex !=null and sex != ''">
+                ,sex = #{sex}
+            </if>
+            <if test=" address !=null and address != ''">
+                ,address = #{address}
+            </if>
+            <if test=" photo !=null and photo != ''">
+                ,photo = #{photo}
+            </if>
+        </set>
+        where id = #{id}
     </update>
 
     <!--根据员工id进行删除-->
     <delete id="employeeInformationDeleteById">
-
+        delete from employee_information where id = #{id}
     </delete>
 
     <!--添加员工信息-->
     <insert id="employeeInformationInsert">
-
+        insert into
+            employee_information(companyInformation_id,department_information,`name`,sex,employee_position,employee_email,phone,address,photo)
+        values(#{companyInformationId},#{departmentInformation},#{name},#{sex},#{employeePosition},#{employeeEmail},#{phone},#{address},#{photo})
     </insert>
 
 </mapper>

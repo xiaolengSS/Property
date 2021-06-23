@@ -27,4 +27,7 @@ public interface HouseMapper {
 
     //房屋绑定 id:业主id houseId：房屋ID
     public Integer updateByHousehoBind(@Param("id") Integer id,@Param("houseId") Integer houseId);
+
+    //根据楼栋、单元、房屋条件进行查询其下数据;水电抄表需调用
+    public List<House> selectByFloorAndUintAndHouse(House house);
 }

@@ -1,6 +1,8 @@
 package cn.bdqn.controller;
 
+import cn.bdqn.domain.Dispatch;
 import cn.bdqn.domain.RepairSettings;
+import cn.bdqn.service.DispatchService;
 import cn.bdqn.service.RepairSettingsService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -18,6 +20,21 @@ public class RepairSettingsController {
 
     @Autowired
     private RepairSettingsService repairSettingsService;
+
+    @Autowired
+    private DispatchService dispatchService;
+
+    //查询全部的派单方式
+    @RequestMapping("/dispatchQueryAll")
+    @ResponseBody
+    @ApiOperation(value = "查询全部派单方式", notes = "查询派单方式",response = String.class)
+    public List<Dispatch> dispatchQueryAll(){
+
+        List<Dispatch> dispatches = dispatchService.dispatchQueryAll();
+
+        return dispatches;
+    }
+
 
     //查询全部报修设置表的信息&模糊查询
     @RequestMapping("/queryByRepairSettings")
