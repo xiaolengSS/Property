@@ -14,7 +14,7 @@
         <result column="creation_time" property="creationTime"/>
         <result column="dispatch_type" property="dispatchType"/>
 
-        <association property="repairSettings" javaType="cn.bdqn.domain.Dispatch">
+        <association property="repairSettings" javaType="cn.bdqn.domain.RepairSettings">
             <id column="id" property="id"/>
             <result column="name" property="name"/>
         </association>
@@ -28,10 +28,10 @@
                 and `name` like concat('%',#{`name`},'%')
             </if>
             <if test="dispatchId != null and dispatchId != ''">
-                and dispatch_id like concat('%',#{dispatch_id},'')
+                and dispatch_id like concat('%',#{dispatchId},'')
             </if>
             <if test="dispatchType != null and dispatchType != ''">
-                and dispatch_type like concat('%',#{dispatch_type},'')
+                and dispatch_type like concat('%',#{dispatchType},'')
             </if>
             <if test="id != null and id != ''">
                 and id like concat('%',#{id},'')
@@ -46,13 +46,13 @@
                 ,`name` = #{`name`}
             </if>
             <if test="dispatchId != null and dispatchId !=''">
-                ,dispatch_id = #{dispatch_id}
+                ,dispatch_id = #{dispatchId}
             </if>
             <if test="commonAreas != null and commonAreas !=''">
-                ,common_areas =#{common_areas}
+                ,common_areas =#{commonAreas}
             </if>
             <if test="backVisitSettingsId != null and backVisitSettingsId=''">
-                ,back_visit_settings_id =#{back_visit_settings_id}
+                ,back_visit_settings_id =#{backVisitSettingsId}
             </if>
             <if test="explain != null and explain=''">
                 ,explain = #{explain}
