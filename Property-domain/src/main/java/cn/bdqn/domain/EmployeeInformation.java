@@ -32,6 +32,8 @@ public class EmployeeInformation {
     private Integer authenticationState;
     //认证时间
     private Date authenticationData;
+    //密码
+    private String pwd;
 
     @Override
     public String toString() {
@@ -50,7 +52,16 @@ public class EmployeeInformation {
                 ", authenticationId='" + authenticationId + '\'' +
                 ", authenticationState=" + authenticationState +
                 ", authenticationData=" + authenticationData +
+                ", pwd='" + pwd + '\'' +
                 '}';
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
     public AuthenticationMethod getAuthenticationMethodId() {
