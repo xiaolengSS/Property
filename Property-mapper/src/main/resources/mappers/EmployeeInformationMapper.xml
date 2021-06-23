@@ -69,9 +69,6 @@
             <if test=" != null and != ''">
                 and
             </if>
-            <if test=" != null and != ''">
-                and
-            </if>
         </where>
     </select>
 
