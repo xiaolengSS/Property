@@ -6,10 +6,10 @@ import java.util.Date;
 public class HydropowerMeterreading {
     //id
     private Integer id;
-    //房屋表id
-    private Integer houseId;
     //关联房屋表
-    private House house;
+    private House houseId;
+    //关联项目表
+    private ReadingCharge readingChargeId;
     //缴费类型id
     private Integer tableTypeId;
     //关联缴费类型
@@ -33,12 +33,13 @@ public class HydropowerMeterreading {
     //备注
     private String desc;
 
+
     @Override
     public String toString() {
         return "HydropowerMeterreading{" +
                 "id=" + id +
                 ", houseId=" + houseId +
-                ", house=" + house +
+                ", readingChargeId=" + readingChargeId +
                 ", tableTypeId=" + tableTypeId +
                 ", tableType=" + tableType +
                 ", degreeOfPreviousPeriod=" + degreeOfPreviousPeriod +
@@ -51,6 +52,22 @@ public class HydropowerMeterreading {
                 ", isSend=" + isSend +
                 ", desc='" + desc + '\'' +
                 '}';
+    }
+
+    public House getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(House houseId) {
+        this.houseId = houseId;
+    }
+
+    public ReadingCharge getReadingChargeId() {
+        return readingChargeId;
+    }
+
+    public void setReadingChargeId(ReadingCharge readingChargeId) {
+        this.readingChargeId = readingChargeId;
     }
 
     public Integer getIsSend() {
@@ -92,23 +109,6 @@ public class HydropowerMeterreading {
     public void setDegreeOfPreviousPeriod(Double degreeOfPreviousPeriod) {
         this.degreeOfPreviousPeriod = degreeOfPreviousPeriod;
     }
-
-    public Integer getHouseId() {
-        return houseId;
-    }
-
-    public void setHouseId(Integer houseId) {
-        this.houseId = houseId;
-    }
-
-    public House getHouse() {
-        return house;
-    }
-
-    public void setHouse(House house) {
-        this.house = house;
-    }
-
     public Double getCurrentDegree() {
         return currentDegree;
     }
