@@ -5,7 +5,7 @@
 <mapper namespace="cn.bdqn.mapper.DispatchMapper">
 
     <!--查询全部派单方式-->
-    <select id="" resultType="cn.bdqn.domain.Dispatch">
+    <select id="dispatchQueryAll" resultType="cn.bdqn.domain.Dispatch">
         select * from dispatch
     </select>
 </mapper>

@@ -7,7 +7,7 @@ public class EmployeeInformation {
     //id
     private Integer id;
     //关联公司id
-    private CompanyInformation companyInformationId;
+    private Integer companyInformationId;
     //(组织)部门信息id
     private String departmentInformation;
     //员工名称
@@ -25,6 +25,17 @@ public class EmployeeInformation {
     //照片
     private String photo;
 
+    //公司
+    private CompanyInformation companyInformation;
+
+    public CompanyInformation getCompanyInformation() {
+        return companyInformation;
+    }
+
+    public void setCompanyInformation(CompanyInformation companyInformation) {
+        this.companyInformation = companyInformation;
+    }
+
     @Override
     public String toString() {
         return "EmployeeInformation{" +
@@ -38,7 +49,16 @@ public class EmployeeInformation {
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", photo='" + photo + '\'' +
+                ", companyInformation=" + companyInformation +
                 '}';
+    }
+
+    public Integer getCompanyInformationId() {
+        return companyInformationId;
+    }
+
+    public void setCompanyInformationId(Integer companyInformationId) {
+        this.companyInformationId = companyInformationId;
     }
 
     public Integer getId() {
@@ -47,14 +67,6 @@ public class EmployeeInformation {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public CompanyInformation getCompanyInformationId() {
-        return companyInformationId;
-    }
-
-    public void setCompanyInformationId(CompanyInformation companyInformationId) {
-        this.companyInformationId = companyInformationId;
     }
 
     public String getDepartmentInformation() {

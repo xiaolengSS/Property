@@ -36,16 +36,16 @@
                 and companyInformation_id = #{companyInformationId}
             </if>
             <if test=" departmentInformation!= null and departmentInformation!= ''">
-                and department_information = #{departmentInformation}
+                and department_information = ('%',#{departmentInformation},'%')
             </if>
             <if test=" name!= null and name!= ''">
-                and `name` = #{name}
+                and `name` = ('%',#{name},'%')
             </if>
             <if test=" phone!= null and phone!= ''">
                 and phone = #{phone}
             </if>
             <if test=" id!= null and id!= ''">
-                and id = #{id}
+                and ei.id = #{id}
             </if>
         </where>
     </select>

@@ -17,12 +17,12 @@ public class RepairMasterServiceImpl implements RepairMasterService {
     private RepairMasterMapper repairMasterMapper;
 
     @Override
-    public PageInfo<RepairMaster> repairMasterQueryAll(Integer currentPage, Integer pageSize) {
+    public PageInfo<RepairMaster> repairMasterQueryAll(Integer currentPage, Integer pageSize,Integer rapairSettingsId) {
 
         PageHelper.startPage(currentPage,pageSize);
-        List<RepairMaster> repairMasters = repairMasterMapper.repairMasterSelectAll();
+        List<RepairMaster> repairMasters = repairMasterMapper.repairMasterSelectAll(rapairSettingsId);
 
-        PageInfo<RepairMaster> pageInfo = new PageInfo<RepairMaster>();
+        PageInfo<RepairMaster> pageInfo = new PageInfo<RepairMaster>(repairMasters);
 
         return pageInfo;
     }

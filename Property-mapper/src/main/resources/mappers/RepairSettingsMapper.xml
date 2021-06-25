@@ -14,18 +14,19 @@
         <result column="creation_time" property="creationTime"/>
         <result column="dispatch_type" property="dispatchType"/>
 
-        <association property="repairSettings" javaType="cn.bdqn.domain.RepairSettings">
+        <association property="dispatch" javaType="cn.bdqn.domain.Dispatch">
             <id column="id" property="id"/>
             <result column="name" property="name"/>
         </association>
     </resultMap>
 
     <select id="repairSettingsSelectVague" resultMap="RepairSettingsResultMap">
-        select id,`name`,dispatch_id,common_areas,back_visit_settings_id,`explain`,creation_time,dispatch_type
-        from repair_settings
+        select rs.id,rs.`name`,dispatch_id,common_areas,back_visit_settings_id,`explain`,creation_time,dispatch_type
+        from repair_settings rs,dispatch d
         <where>
+            rs.dispatch_id = d.id
             <if test="name != null and name !=''">
-                and `name` like concat('%',#{`name`},'%')
+                and rs.`name` like concat('%',#{name},'%')
             </if>
             <if test="dispatchId != null and dispatchId != ''">
                 and dispatch_id like concat('%',#{dispatchId},'')
@@ -34,7 +35,7 @@
                 and dispatch_type like concat('%',#{dispatchType},'')
             </if>
             <if test="id != null and id != ''">
-                and id like concat('%',#{id},'')
+                and rs.id like concat('%',#{id},'')
             </if>
         </where>
     </select>
@@ -43,7 +44,7 @@
         update repair_settings
         <set>
             <if test="name != null and name!=''">
-                ,`name` = #{`name`}
+                ,`name` = #{name}
             </if>
             <if test="dispatchId != null and dispatchId !=''">
                 ,dispatch_id = #{dispatchId}
@@ -51,11 +52,11 @@
             <if test="commonAreas != null and commonAreas !=''">
                 ,common_areas =#{commonAreas}
             </if>
-            <if test="backVisitSettingsId != null and backVisitSettingsId=''">
+            <if test="backVisitSettingsId != null and backVisitSettingsId!=''">
                 ,back_visit_settings_id =#{backVisitSettingsId}
             </if>
-            <if test="explain != null and explain=''">
-                ,explain = #{explain}
+            <if test="explain != null and explain !=''">
+                ,`explain` =#{explain}
             </if>
         </set>
         where id = #{id}

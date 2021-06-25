@@ -23,10 +23,9 @@ public class EmployeeInformationServiceImpl implements EmployeeInformationServic
 
         List<EmployeeInformation> employeeInformations = employeeInformationMapper.employeeInformationSelectVague(employeeInformation);
 
+        PageInfo<EmployeeInformation> employeeInformationPageInfo =new PageInfo<>(employeeInformations);
 
-        PageInfo<EmployeeInformation> pageInfo = new PageInfo<EmployeeInformation>();
-
-        return pageInfo;
+        return employeeInformationPageInfo;
     }
 
     @Override

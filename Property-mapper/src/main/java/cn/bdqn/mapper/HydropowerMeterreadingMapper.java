@@ -22,4 +22,7 @@ public interface HydropowerMeterreadingMapper {
     //查询单条上期数据
     public HydropowerMeterreading selectByLimit(Integer houseId);
 
+    //添加水电抄表信息
+    public int insertBean(HydropowerMeterreading hydropowerMeterreading);
+
 }

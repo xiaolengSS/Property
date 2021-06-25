@@ -1,6 +1,10 @@
 package cn.bdqn.domain;
 
+
+
+import java.sql.Timestamp;
 import java.util.Date;
+
 
 //报修设置
 public class RepairSettings {
@@ -9,17 +13,21 @@ public class RepairSettings {
     //类型名称
     private String name;
     //派单方式
-    private Dispatch dispatchId;
+    private Integer dispatchId;
     //公共区域（0是 1否）
     private Integer commonAreas;
     //回访设置
-    private BackVisitSettings backVisitSettingsId;
+    private Integer backVisitSettingsId;
     //说明
     private String explain;
     //创建时间
+    //private Timestamp creationTime;
     private Date creationTime;
     //派单类型（随机数）
     private String dispatchType;
+
+    //派单方式
+    private Dispatch dispatch;
 
     @Override
     public String toString() {
@@ -30,9 +38,18 @@ public class RepairSettings {
                 ", commonAreas=" + commonAreas +
                 ", backVisitSettingsId=" + backVisitSettingsId +
                 ", explain='" + explain + '\'' +
-                ", creation_time=" + creationTime +
+                ", creationTime=" + creationTime +
                 ", dispatchType='" + dispatchType + '\'' +
+                ", dispatch=" + dispatch +
                 '}';
+    }
+
+    public Dispatch getDispatch() {
+        return dispatch;
+    }
+
+    public void setDispatch(Dispatch dispatch) {
+        this.dispatch = dispatch;
     }
 
     public Integer getId() {
@@ -51,11 +68,11 @@ public class RepairSettings {
         this.name = name;
     }
 
-    public Dispatch getDispatchId() {
+    public Integer getDispatchId() {
         return dispatchId;
     }
 
-    public void setDispatchId(Dispatch dispatchId) {
+    public void setDispatchId(Integer dispatchId) {
         this.dispatchId = dispatchId;
     }
 
@@ -67,11 +84,11 @@ public class RepairSettings {
         this.commonAreas = commonAreas;
     }
 
-    public BackVisitSettings getBackVisitSettingsId() {
+    public Integer getBackVisitSettingsId() {
         return backVisitSettingsId;
     }
 
-    public void setBackVisitSettingsId(BackVisitSettings backVisitSettingsId) {
+    public void setBackVisitSettingsId(Integer backVisitSettingsId) {
         this.backVisitSettingsId = backVisitSettingsId;
     }
 

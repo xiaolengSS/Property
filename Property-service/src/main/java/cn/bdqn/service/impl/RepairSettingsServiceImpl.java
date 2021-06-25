@@ -6,9 +6,11 @@ import cn.bdqn.service.RepairSettingsService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service(value = "repairSettingsService")
 public class RepairSettingsServiceImpl implements RepairSettingsService {
 
     @Autowired
@@ -21,7 +23,7 @@ public class RepairSettingsServiceImpl implements RepairSettingsService {
         PageHelper.startPage(currentPage,pageSize);
         List<RepairSettings> repairSettingsList = repairSettingsMapper.repairSettingsSelectVague(repairSettings);
 
-        PageInfo<RepairSettings> pageInfo = new PageInfo<RepairSettings>();
+        PageInfo<RepairSettings> pageInfo = new PageInfo<RepairSettings>(repairSettingsList);
 
         return pageInfo;
     }

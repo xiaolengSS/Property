@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -37,14 +38,14 @@ public class RepairMasterController {
 
 
 
-    //查询全部报修师傅
+    //根据报修设置id查询全部报修师傅
     @RequestMapping("/employeeInformationQueryAll")
     @ResponseBody
     @ApiOperation(value = "查询全部报修师傅信息", notes = "查询全部",response = String.class)
     public PageInfo<RepairMaster> employeeInformationQueryAll(@RequestParam(name="",required = true,defaultValue = "1")Integer currentPage,
-                                                              RepairMaster repairMaster){
+                                                              Integer  rapairSettingsId){
 
-        PageInfo<RepairMaster> repairMasterPageInfo = repairMasterService.repairMasterQueryAll(currentPage,10);
+        PageInfo<RepairMaster> repairMasterPageInfo = repairMasterService.repairMasterQueryAll(currentPage,10,rapairSettingsId);
 
         return repairMasterPageInfo;
     }
@@ -77,6 +78,7 @@ public class RepairMasterController {
     @ApiOperation(value = "保存报修师傅信息", notes = "添加",response = String.class)
     public String repairMasterSave(RepairMaster repairMaster){
 
+        repairMaster.setCreationTime(new Date());
         repairMasterService.repairMasterSave(repairMaster);
 
         return "保存成功！";

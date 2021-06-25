@@ -9,13 +9,21 @@ public class RepairMaster {
     //报修类型
     private String repairType;
     //状态
-    private RepairState repairStateId;
+    private Integer repairStateId;
     //说明
     private String illustrate;
     //创建时间
     private Date creationTime;
     //报修师傅
     private String name;
+    //报修设置
+    private Integer rapairSettingsId;
+
+    //报修设置
+    private RepairSettings repairSettings;
+
+    //报修状态
+    private RepairState repairState;
 
     @Override
     public String toString() {
@@ -24,8 +32,11 @@ public class RepairMaster {
                 ", repairType='" + repairType + '\'' +
                 ", repairStateId=" + repairStateId +
                 ", illustrate='" + illustrate + '\'' +
-                ", creation_time=" + creationTime +
+                ", creationTime=" + creationTime +
                 ", name='" + name + '\'' +
+                ", rapairSettingsId=" + rapairSettingsId +
+                ", repairSettings=" + repairSettings +
+                ", repairState=" + repairState +
                 '}';
     }
 
@@ -45,11 +56,11 @@ public class RepairMaster {
         this.repairType = repairType;
     }
 
-    public RepairState getRepairStateId() {
+    public Integer getRepairStateId() {
         return repairStateId;
     }
 
-    public void setRepairStateId(RepairState repairStateId) {
+    public void setRepairStateId(Integer repairStateId) {
         this.repairStateId = repairStateId;
     }
 
@@ -75,5 +86,29 @@ public class RepairMaster {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getRapairSettingsId() {
+        return rapairSettingsId;
+    }
+
+    public void setRapairSettingsId(Integer rapairSettingsId) {
+        this.rapairSettingsId = rapairSettingsId;
+    }
+
+    public RepairSettings getRepairSettings() {
+        return repairSettings;
+    }
+
+    public void setRepairSettings(RepairSettings repairSettings) {
+        this.repairSettings = repairSettings;
+    }
+
+    public RepairState getRepairState() {
+        return repairState;
+    }
+
+    public void setRepairState(RepairState repairState) {
+        this.repairState = repairState;
     }
 }
