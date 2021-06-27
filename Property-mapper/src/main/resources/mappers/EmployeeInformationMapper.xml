@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.mapper.EmployeeInformationMapper">
+
+    <resultMap id="EmployeeInformationResultMap" type="cn.bdqn.domain.EmployeeInformation">
+        <id column="id" property="id"/>
+        <result column="companyInformation_id" property="companyInformationId"/>
+        <result column="department_information" property="departmentInformation"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="employee_position" property="employeePosition"/>
+        <result column="employee_email" property="employeeEmail"/>
+        <result column="phone" property="phone"/>
+        <result column="address" property="address"/>
+        <result column="photo" property="photo"/>
+
+        <association property="companyInformation" javaType="cn.bdqn.domain.CompanyInformation">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="organization_level" property="organizationLevel"/>
+            <result column="computer_organization" property="computerOrganization"/>
+            <result column="describe" property="describe"/>
+        </association>
+    </resultMap>
+
+    <!--对员工信息做的模糊查询操作：（分公司，部门，员工名称，手机号，员工id）-->
+    <select id="employeeInformationSelectVague" resultMap="EmployeeInformationResultMap">
+        select *
+        from
+        employee_information as ei,company_information as ci
+        <where>
+            ei.companyInformation_id = ci.id
+            <if test=" companyInformationId!= null and companyInformationId!= ''">
+                and companyInformation_id = #{companyInformationId}
+            </if>
+            <if test=" departmentInformation!= null and departmentInformation!= ''">
+                and department_information = ('%',#{departmentInformation},'%')
+            </if>
+            <if test=" name!= null and name!= ''">
+                and `name` = ('%',#{name},'%')
+            </if>
+            <if test=" phone!= null and phone!= ''">
+                and phone = #{phone}
+            </if>
+            <if test=" id!= null and id!= ''">
+                and ei.id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <!--根据员工id进行修改（员工姓名，员工邮箱，员工岗位，员工电话，员工性别，家庭住址，照片）-->
+    <update id="employeeInformationUpdateById">
+        update employee_information
+        <set>
+            <if test=" name!=null and  name!= ''">
+                ,`name` = #{name}
+            </if>
+            <if test=" employeeEmail !=null and employeeEmail != ''">
+                ,employee_email = #{employeeEmail}
+            </if>
+            <if test=" employeePosition !=null and employeePosition != ''">
+                ,employee_position = #{employeePosition}
+            </if>
+            <if test=" phone !=null and phone != ''">
+                ,phone = #{phone}
+            </if>
+            <if test=" sex !=null and sex != ''">
+                ,sex = #{sex}
+            </if>
+            <if test=" address !=null and address != ''">
+                ,address = #{address}
+            </if>
+            <if test=" photo !=null and photo != ''">
+                ,photo = #{photo}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--根据员工id进行删除-->
+    <delete id="employeeInformationDeleteById">
+        delete from employee_information where id = #{id}
+    </delete>
+
+    <!--添加员工信息-->
+    <insert id="employeeInformationInsert">
+        insert into
+            employee_information(companyInformation_id,department_information,`name`,sex,employee_position,employee_email,phone,address,photo)
+        values(#{companyInformationId},#{departmentInformation},#{name},#{sex},#{employeePosition},#{employeeEmail},#{phone},#{address},#{photo})
+    </insert>
+
+</mapper>

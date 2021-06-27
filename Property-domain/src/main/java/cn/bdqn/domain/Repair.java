@@ -27,4 +27,108 @@ public class Repair {
     //关联楼栋表
     private Floor floorId;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public TypeOfRepair getTypeOfRepairId() {
+        return typeOfRepairId;
+    }
+
+    public void setTypeOfRepairId(TypeOfRepair typeOfRepairId) {
+        this.typeOfRepairId = typeOfRepairId;
+    }
+
+    public String getRepairName() {
+        return repairName;
+    }
+
+    public void setRepairName(String repairName) {
+        this.repairName = repairName;
+    }
+
+    public String getRepairPhone() {
+        return repairPhone;
+    }
+
+    public void setRepairPhone(String repairPhone) {
+        this.repairPhone = repairPhone;
+    }
+
+    public Date getAppointmentTime() {
+        return appointmentTime;
+    }
+
+    public void setAppointmentTime(Date appointmentTime) {
+        this.appointmentTime = appointmentTime;
+    }
+
+    public StatusOfTheRepair getStatusOfTheRepairId() {
+        return statusOfTheRepairId;
+    }
+
+    public void setStatusOfTheRepairId(StatusOfTheRepair statusOfTheRepairId) {
+        this.statusOfTheRepairId = statusOfTheRepairId;
+    }
+
+    public String getReportTheContents() {
+        return reportTheContents;
+    }
+
+    public void setReportTheContents(String reportTheContents) {
+        this.reportTheContents = reportTheContents;
+    }
+
+    public House getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(House houseId) {
+        this.houseId = houseId;
+    }
+
+    public Unit getUnitId() {
+        return unitId;
+    }
+
+    public void setUnitId(Unit unitId) {
+        this.unitId = unitId;
+    }
+
+    public Floor getFloorId() {
+        return floorId;
+    }
+
+    public void setFloorId(Floor floorId) {
+        this.floorId = floorId;
+    }
+
+    @Override
+    public String toString() {
+        return "Repair{" +
+                "id=" + id +
+                ", location='" + location + '\'' +
+                ", typeOfRepairId=" + typeOfRepairId +
+                ", repairName='" + repairName + '\'' +
+                ", repairPhone='" + repairPhone + '\'' +
+                ", appointmentTime=" + appointmentTime +
+                ", statusOfTheRepairId=" + statusOfTheRepairId +
+                ", reportTheContents='" + reportTheContents + '\'' +
+                ", houseId=" + houseId +
+                ", unitId=" + unitId +
+                ", floorId=" + floorId +
+                '}';
+    }
 }

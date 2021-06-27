@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.mapper.RepairMasterMapper">
+
+    <resultMap id="RepairMasterResultMap" type="cn.bdqn.domain.RepairMaster">
+        <id column="id" property="id"/>
+        <result column="repair_type" property="repairType"/>
+        <result column="repair_state_id" property="repairStateId"/>
+        <result column="illustrate" property="illustrate"/>
+        <result column="creation_time" property="creationTime"/>
+        <result column="name" property="name"/>
+        <result column="rapair_settings_id" property="rapairSettingsId"/>
+
+        <association property="repairState" javaType="cn.bdqn.domain.RepairState">
+            <id column="id" property="id"/>
+            <result column="state_name" property="stateName"/>
+        </association>
+
+        <association property="repairSettings" javaType="cn.bdqn.domain.RepairSettings">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="dispatch_id" property="dispatchId"/>
+            <result column="common_areas" property="commonAreas"/>
+            <result column="back_visit_settings_id" property="backVisitSettingsId"/>
+            <result column="explain" property="explain"/>
+            <result column="creation_time" property="creationTime"/>
+            <result column="dispatch_type" property="dispatchType"/>
+        </association>
+    </resultMap>
+
+    <!--根据报修设置id查询全部保修师傅-->
+    <select id="repairMasterSelectAll" resultMap="RepairMasterResultMap">
+        select id,repair_type,repair_state_id,illustrate,creation_time,`name`,rapair_settings_id
+        from repair_master
+        where rapair_settings_id = #{rapairSettingsId}
+    </select>
+
+    <!--根据id修改保修师傅状态和说明-->
+    <update id="repairMasterUpdate">
+        update repair_master
+        <set>
+            <if test="repairStateId != null and repairStateId != ''">
+                ,repair_state_id = #{repairStateId}
+            </if>
+            <if test="illustrate != null and illustrate != ''">
+                ,illustrate = #{illustrate}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--根据id删除报修师傅信息-->
+    <delete id="repairMasterDelete">
+        delete from repair_master where id = #{id}
+    </delete>
+
+    <!--添加报修师傅-->
+    <insert id="repairMasterInsert">
+        insert into repair_master(repair_type,repair_state_id,illustrate,creation_time,`name`,rapair_settings_id)
+        values(#{repairType},#{repairStateId},#{illustrate},#{creationTime},#{name},#{rapairSettingsId});
+    </insert>
+</mapper>
