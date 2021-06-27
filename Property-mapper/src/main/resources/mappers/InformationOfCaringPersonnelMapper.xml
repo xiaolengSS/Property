@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bdqn.mapper.InformationOfCaringPersonnelMapper">
+
+    <resultMap id="ResultMap" type="cn.bdqn.domain.InformationOfCaringPersonnel">
+        <id column="id" property="id"/>
+        <result column="name_of_personnel" property="nameOfPersonnel"/>
+        <result column="number" property="number"/>
+        <result column="age" property="age"/>
+        <result column="phone" property="phone"/>
+    </resultMap>
+<!--    查询所有-->
+    <select id="selectAll" resultMap="ResultMap">
+        select * FROM information_of_caring_personnel
+    </select>
+
+<!--    添加-->
+    <insert id="insertPersonnl">
+        INSERT INTO
+            information_of_caring_personnel(name_of_personnel,number,age,phone)
+	    VALUES
+	        (#{nameOfPersonnel},#{number},#{age},#{phone});
+    </insert>
+
+<!--    删除-->
+    <delete id="deletePersonnl">
+        delete from
+            information_of_caring_personnel
+        where
+            id = #{id}
+    </delete>
+
+<!--    根据id查询-->
+    <select id="selectid" resultMap="ResultMap">
+        select * FROM information_of_caring_personnel where id=#{id}
+    </select>
+
+<!--    修改-->
+    <update id="updataPersonnl">
+        update
+            information_of_caring_personnel
+        set
+            name_of_personnel = #{nameOfPersonnel},number = #{number},age = #{age},phone= #{phone}
+        where
+            id = #{id}
+    </update>
+
+<!--    根据条件查询-->
+    <select id="select" resultMap="ResultMap">
+        select
+            *
+        from
+            information_of_caring_personnel
+        <where>
+            <if test="nameOfPersonnel != null and nameOfPersonnel != ''">
+                and name_of_personnel=#{nameOfPersonnel}
+            </if>
+            <if test="number != null and number != ''">
+                and number = #{number}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+        </where>
+    </select>
+</mapper>

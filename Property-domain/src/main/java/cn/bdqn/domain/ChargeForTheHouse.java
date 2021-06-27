@@ -12,12 +12,10 @@ public class ChargeForTheHouse {
     private House houseId;
     //关联收费范围
     private RangeOfCharges rangeOfChargesId;
-    //关联付费类型
-    private TypeOfPayment typeOfPaymentId;
-    //关联收费项目类型
+    //关联费用类型
     private TheTypeOfFee theTypeOfFeeId;
-    //楼层
-    private String floor;
+    //关联收费项目类型
+    private PayService payServiceId;
     //房屋状态
     private HousingStatus housingStatusId;
     //计费起始时间
@@ -26,6 +24,22 @@ public class ChargeForTheHouse {
     private Date end_time;
     //欠费金额
     private Double amount_owed;
+
+    @Override
+    public String toString() {
+        return "ChargeForTheHouse{" +
+                "id=" + id +
+                ", typeOfHouseId=" + typeOfHouseId +
+                ", houseId=" + houseId +
+                ", rangeOfChargesId=" + rangeOfChargesId +
+                ", theTypeOfFeeId=" + theTypeOfFeeId +
+                ", payServiceId=" + payServiceId +
+                ", housingStatusId=" + housingStatusId +
+                ", start_time=" + start_time +
+                ", end_time=" + end_time +
+                ", amount_owed=" + amount_owed +
+                '}';
+    }
 
     public Integer getId() {
         return id;
@@ -59,14 +73,6 @@ public class ChargeForTheHouse {
         this.rangeOfChargesId = rangeOfChargesId;
     }
 
-    public TypeOfPayment getTypeOfPaymentId() {
-        return typeOfPaymentId;
-    }
-
-    public void setTypeOfPaymentId(TypeOfPayment typeOfPaymentId) {
-        this.typeOfPaymentId = typeOfPaymentId;
-    }
-
     public TheTypeOfFee getTheTypeOfFeeId() {
         return theTypeOfFeeId;
     }
@@ -75,12 +81,12 @@ public class ChargeForTheHouse {
         this.theTypeOfFeeId = theTypeOfFeeId;
     }
 
-    public String getFloor() {
-        return floor;
+    public PayService getPayServiceId() {
+        return payServiceId;
     }
 
-    public void setFloor(String floor) {
-        this.floor = floor;
+    public void setPayServiceId(PayService payServiceId) {
+        this.payServiceId = payServiceId;
     }
 
     public HousingStatus getHousingStatusId() {
@@ -113,22 +119,5 @@ public class ChargeForTheHouse {
 
     public void setAmount_owed(Double amount_owed) {
         this.amount_owed = amount_owed;
-    }
-
-    @Override
-    public String toString() {
-        return "ChargeForTheHouse{" +
-                "id=" + id +
-                ", typeOfHouseId=" + typeOfHouseId +
-                ", houseId=" + houseId +
-                ", rangeOfChargesId=" + rangeOfChargesId +
-                ", typeOfPaymentId=" + typeOfPaymentId +
-                ", theTypeOfFeeId=" + theTypeOfFeeId +
-                ", floor='" + floor + '\'' +
-                ", housingStatusId=" + housingStatusId +
-                ", start_time=" + start_time +
-                ", end_time=" + end_time +
-                ", amount_owed=" + amount_owed +
-                '}';
     }
 }
