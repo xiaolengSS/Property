@@ -28,5 +28,27 @@
         VALUES
 	        (#{typeName},#{contractReviewId},#{describe},#{date});
     </insert>
+
+<!--    删除-->
+    <delete id="delete">
+        delete from type_of_contract where id = #{id}
+    </delete>
+
+<!--    根据条件查询-->
+    <select id="selectAllif" resultMap="ResultMap">
+        SELECT * from type_of_contract as typecontract,contract_review as contract
+        <where>
+            typecontract.contract_review_id=contract.id
+            <if test="typeName != '' and typeName != null">
+                and typecontract.type_name=#{typeName}
+            </if>
+            <if test="id != '' and id != null">
+                and typecontract.id=#{id}
+            </if>
+            <if test="contractReviewId != '' and contractReviewId != null">
+                and typecontract.id=#{contractReviewId.id}
+            </if>
+        </where>
+    </select>
 </mapper>
 

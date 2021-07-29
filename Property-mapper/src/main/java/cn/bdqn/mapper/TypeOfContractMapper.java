@@ -13,5 +13,8 @@ public interface TypeOfContractMapper {
     public Integer inner(TypeOfContract typeOfContract);
 
     //删除
+    public Integer delete(Integer id);
 
+    //跟据条件分页查询
+    public List<TypeOfContract> selectAllif(TypeOfContract typeOfContract);
 }
